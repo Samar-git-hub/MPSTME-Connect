@@ -1,0 +1,175 @@
+:root { /* default theme I have set is dark */
+    --background-color: #2F242C;
+    --text-color: #FFFFFF;
+    --primary-color: #A42CD6; /* main color other than font and background, for buttons etc*/
+    --secondary-color: #C179B9; /* compliments primary */
+    --accent-color: #EEB4B3; /* sometimes */
+    --header-background: #502274; /* for navbar or header */
+    --primary-rgba: rgba(164, 44, 214, 1); /* hazy buttons after clicking */
+    --primary-rgba-opaque: rgba(164, 44, 214, 0.8);
+}
+[data-theme="light"] { /* can be toggled with light theme, thats why variables in the CSS */
+    --background-color: #FFFFFF;
+    --text-color: #2F242C;
+    --primary-color: #A42CD6;
+    --secondary-color: #C179B9;
+    --accent-color: #EEB4B3;
+    --header-background: #EFEFF2;
+    --primary-rgba: rgba(164, 44, 214, 1); /* hazy buttons, same color as primary */
+    --primary-rgba-opaque: rgba(164, 44, 214, 0.8);
+}
+* {
+    font-family: Poppins, sans-serif;
+}
+a {
+    color: inherit;
+    text-decoration: none;
+}
+a:hover{
+    color: var(--secondary-color);
+}
+body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+    margin-top: 100px;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+button {
+    background-color: var(--primary-color);
+    color: var(--text-color);
+}
+header {
+    background-color: var(--header-background);
+    top: 0;
+    left: 0;
+    right: 0;
+    position: fixed;
+    display: flex;
+    flex-direction: row;
+    height: 100px;
+}
+.navimage {
+    height: 50px;
+    width: auto;
+    margin-left: 20px;
+    margin-top: 5px;
+}
+.left-part {
+    flex: 1;
+    display: flex;
+    align-items: center;
+}
+.right-part {
+    flex: 2;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+}
+.navbar-tabs {
+    margin-right: 20px;
+    font-size: 20px;
+}
+.primary-container {
+    border-color: var(--accent-color);
+    border-style: solid;
+    border-radius: 3px;
+    padding: 10px;
+    padding-bottom: 5px;
+    display: inline-block;
+}
+.error-image {
+    height: 300px;
+    width: auto;
+}
+.header-font {
+    font-size: 30px;
+}
+.subheader-font {
+    font-size: 25px;
+}
+.box-main {
+    height: 80vh;
+    width: 98vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#login-header {
+    text-align: center;
+    margin-top: 80px;
+    margin-bottom: 80px;
+}
+#login-subheader {
+    text-align: center;
+    margin-bottom: 40px;
+}
+#register-header {
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+#register-subheader {
+    text-align: center;
+    width: 100%; 
+    max-width: 500px; 
+    margin-top: 5px;
+    word-wrap: break-word;
+    text-align: left;
+}
+.primary-container-login {
+    display: flex;
+    flex-direction: column;
+    margin-top: 50px;
+    padding-left: 50px;
+    padding-right: 50px;
+}
+.input-box {
+    display: block;
+    height: 40px;
+    display: block;
+    width: 100%;
+    margin-top: 50px;
+    margin-bottom: 60px;
+    background-color: transparent;
+    border: none;
+    border-bottom: 2px solid var(--accent-color);
+    color: var(--text-color);
+    font-size: 20px;
+}
+.input-box::placeholder {
+    color: var(--text-color);
+    opacity: 1; 
+}
+.input-box:focus {
+    outline: none; 
+}
+.submit-button {
+    border: none;
+    font-size: 20px;
+    display: block;
+    width: 100%;
+    height: 50px;
+    border-radius: 50px;
+    cursor: pointer;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    transition: box-shadow 0.3s ease;
+}
+.submit-button:active {
+    box-shadow: 0 0 5px var(--primary-rgba), 0 0 10px var(--primary-rgba-opaque);
+}
+#sign-up {
+    color: var(--primary-color);
+}
+#dont-have-account {
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 30px;
+}
+.primary-container-register
+{
+    padding-top: 20px;
+    padding-bottom: 20px;
+}

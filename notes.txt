@@ -1,0 +1,35 @@
+above app.run
+app.app_context():
+    db.create_all()
+
+pip install flask
+pip install flask-sqlalchemy
+
+from flask_sqlalchemy import SQLAlchemy
+
+app.config['SQLAlchemy_DATABASE_URI'] = 'sqlite:///users.sqlite3'
+users here is the name of the table^
+db = SQLAlchemy(app)
+
+class users(db.Model):
+    _id = db.Column("id", db.Integer, primary_key=True)
+    define the name only if you want to keep it different from the variable name
+    name = db.Column(db.String(100))
+    email = db.Column(db.String(100))
+
+    def __init__(self, name, email):
+        self.name = name
+        self.email = email
+
+
+db.session.add(user)
+db.commit()
+
+found_user = users.query.filter_by(name=user).first()
+if found_user:
+    session["email"] = found_user.email
+else:
+    usr = users(user, "")
+    db.session.add(usr)
+    db.commit()
+

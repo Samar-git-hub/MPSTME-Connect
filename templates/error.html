@@ -1,0 +1,15 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Error
+{% endblock %}
+
+{% block body %}
+    <main class="box-main">
+        <div class="primary-container">
+            <div class="header-font">Error!</div>
+            <div class="subheader-font">{{ error }}</div>
+            <img class="error-image" src="/static/errorcat.jpg" alt="error cat"> 
+        </div>
+    </main>
+{% endblock %}
