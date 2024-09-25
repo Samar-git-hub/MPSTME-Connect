@@ -1,35 +1,14 @@
-above app.run
-app.app_context():
-    db.create_all()
-
-pip install flask
-pip install flask-sqlalchemy
-
-from flask_sqlalchemy import SQLAlchemy
-
-app.config['SQLAlchemy_DATABASE_URI'] = 'sqlite:///users.sqlite3'
-users here is the name of the table^
-db = SQLAlchemy(app)
-
-class users(db.Model):
-    _id = db.Column("id", db.Integer, primary_key=True)
-    define the name only if you want to keep it different from the variable name
-    name = db.Column(db.String(100))
-    email = db.Column(db.String(100))
-
-    def __init__(self, name, email):
-        self.name = name
-        self.email = email
-
-
-db.session.add(user)
-db.commit()
-
-found_user = users.query.filter_by(name=user).first()
-if found_user:
-    session["email"] = found_user.email
-else:
-    usr = users(user, "")
-    db.session.add(usr)
-    db.commit()
-
+milestones
+1.  Login page and register page with frontend done
+    done with the backend for these two pages
+2.  Made verify and signup pages and their backend (routing only)
+3.  Made a wokring system where after entering their university email
+    they will be sent an automated code via flask mail and gmail's smtp service
+    then they will be redirected to a verify page, where they will have to enter the code.
+    Only after matching will the user be allowed to register for an account on the platform,
+    and will be asked to enter a password and confirm their password.
+4.  Understood how to connect with a mysql server, and working with mysql to store a basic first table
+    called user_auth, which would contain the user emails and their passwords
+4.  todo: make database in register page, after that login with those credentials
+add hasing and checking hash on passwords through that passwords library
+5. want to add hashing of passwords

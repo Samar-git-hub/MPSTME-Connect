@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 
 {% block title %}
-    Register
+    Sign up
 {% endblock %}
 
 {% block body %}
@@ -10,9 +10,11 @@
         <div class="header-font" id="register-header">Register for MPSTME Connect now!</div>
         <div class="subheader-font" id="register-subheader">Connect and collaborate on projects, hackathons and more!
         </div>
-        <form action="/register" method="post">
+        <form action="/signup" method="post">
             <input name="email" class="input-box" placeholder="University Email" type="email" autofocus>
-            <button class="submit-button" type="submit" value="signup">Send verification code</button>
+            <input name="password" class="input-box" placeholder="Password" type="password" autocomplete="off" autofocus>
+            <input name="confirmedpassword" class="input-box" placeholder="Confirm Password" type="password" autocomplete="off" autofocus>
+            <button class="submit-button" type="submit" value="signup">Sign up</button>
         </form>
     </div>
 </main>
