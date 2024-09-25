@@ -4,6 +4,7 @@ from flask_session import Session
 from flask_mail import Mail, Message
 from helper import login_required, verification_required
 from dotenv import load_dotenv
+from werkzeug.security import check_password_hash, generate_password_hash
 import random
 import mysql.connector as sql
 
@@ -53,7 +54,7 @@ def login():
         c1.execute("SELECT password FROM user_auth WHERE email = (%s)", (email, ))
         dbpassword = c1.fetchone()[0] # first element of the returned tuple 
         # (fetchone returns a tuple, fetchall returns a list of tuples)
-        if password != dbpassword:
+        if not check_password_hash(dbpassword, password):
             return render_template("error.html", error="Enter valid password")
         
         session["user_id"] = email
@@ -131,11 +132,13 @@ def signup():
             return render_template("error.html", error="Confirm your password")
         if password != confirmedpassword:
             return render_template("error.html", error="Confirmation password must match the password you entered")
-        rows = c1.execute("SELECT * FROM user_auth WHERE email = (%s)", (email))
-        if len(rows) != 0:
+        c1.execute("SELECT * FROM user_auth WHERE email = (%s)", (email,))
+        rows = c1.fetchall()
+        if rows:  
             return render_template("error.html", error="Email has already been registered")
         # try again button error handling
-        c1.execute("INSERT INTO user_auth (email, password) VALUES (%s, %s)", (email, password))
+        hash = generate_password_hash(password, method='pbkdf2', salt_length=16)
+        c1.execute("INSERT INTO user_auth (email, password) VALUES (%s, %s)", (email, hash))
         conn.commit()
         return redirect("/login")
     else:

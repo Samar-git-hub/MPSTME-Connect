@@ -9,6 +9,6 @@ milestones
     and will be asked to enter a password and confirm their password.
 4.  Understood how to connect with a mysql server, and working with mysql to store a basic first table
     called user_auth, which would contain the user emails and their passwords
-4.  todo: make database in register page, after that login with those credentials
+5.  added hashing of passwords, so its safer in a database
+6.  todo: make database in register page, after that login with those credentials
 add hasing and checking hash on passwords through that passwords library
-5. want to add hashing of passwords
