@@ -1,4 +1,4 @@
-:root { /* default theme I have set is dark */
+:root { /* When no attribute is set (like dark or white, the below styles apply. So by default dark styles */
     --background-color: #2F242C;
     --text-color: #FFFFFF;
     --primary-color: #A42CD6; /* main color other than font and background, for buttons etc*/
@@ -9,12 +9,12 @@
     --primary-rgba-opaque: rgba(164, 44, 214, 0.8);
 }
 [data-theme="light"] { /* can be toggled with light theme, thats why variables in the CSS */
-    --background-color: #FFFFFF;
+    --background-color: #EFEFF2;
     --text-color: #2F242C;
     --primary-color: #A42CD6;
-    --secondary-color: #C179B9;
-    --accent-color: #EEB4B3;
-    --header-background: #EFEFF2;
+    --secondary-color: #EEB4B3;
+    --accent-color: #C179B9;
+    --header-background: #502274;
     --primary-rgba: rgba(164, 44, 214, 1); /* hazy buttons, same color as primary */
     --primary-rgba-opaque: rgba(164, 44, 214, 0.8);
 }
@@ -68,8 +68,9 @@ header {
     justify-content: flex-end;
 }
 .navbar-tabs {
-    margin-right: 40px;
+    margin-left: 40px;
     font-size: 20px;
+    color: white;
 }
 .primary-container {
     border-color: var(--accent-color);
@@ -156,6 +157,7 @@ header {
     margin-top: 10px;
     margin-bottom: 10px;
     transition: box-shadow 0.3s ease;
+    color: white;
 }
 .submit-button:active {
     box-shadow: 0 0 5px var(--primary-rgba), 0 0 10px var(--primary-rgba-opaque);
@@ -168,8 +170,15 @@ header {
     margin-top: 10px;
     margin-bottom: 30px;
 }
-.primary-container-register
-{
+.primary-container-register {
     padding-top: 20px;
     padding-bottom: 20px;
+}
+#toggle-button {
+    height: 25px;
+    margin-top: 10px;
+    margin-right: 20px;
+    margin-left: -20px;
+    width: auto;
+    cursor: pointer;
 }

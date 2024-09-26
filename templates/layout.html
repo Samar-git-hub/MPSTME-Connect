@@ -6,6 +6,7 @@
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+        <script src="/static/script.js"></script>
         <title>MPSTME Connect {% block title %}{% endblock %}</title>
     </head>
     <body>
@@ -21,9 +22,11 @@
                     <div class="navbar-tabs"><a href="/events">Events</a></div>
                     <div class="navbar-tabs"><a href="/profile">Profile</a></div>
                     <div class="navbar-tabs"><a href="/logout">Log out</a></div>
+                    <div class="navbar-tabs"><img id="toggle-button" src="/static/moontheme.png"></div>
                 {% else %}
                     <div class="navbar-tabs"><a href="/register">Register</a></div>
                     <div class="navbar-tabs"><a href="/login">Log in</a></div>
+                    <div class="navbar-tabs"><img id="toggle-button" src="/static/moontheme.png"></div>
                 {% endif %}
             </div>
         </header>

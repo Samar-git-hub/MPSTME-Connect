@@ -2,7 +2,7 @@ milestones
 1.  Login page and register page with frontend done
     done with the backend for these two pages
 2.  Made verify and signup pages and their backend (routing only)
-3.  Made a wokring system where after entering their university email
+3.  Made a working system where after entering their university email
     they will be sent an automated code via flask mail and gmail's smtp service
     then they will be redirected to a verify page, where they will have to enter the code.
     Only after matching will the user be allowed to register for an account on the platform,
@@ -10,5 +10,17 @@ milestones
 4.  Understood how to connect with a mysql server, and working with mysql to store a basic first table
     called user_auth, which would contain the user emails and their passwords
 5.  added hashing of passwords, so its safer in a database
+6.  So for the implementation of the toggle for light and dark mode, I made a button that has an image that
+    switches between a moon icon for dark mode and a sun icon for light mode. The script element is in the head,
+    so I put DOMContentLoaded, so that the javascript logic will only begin
+    after the entire document object model loads. 
+    So first part of the js code was basically making sure that by default the users page looks a certain way, 
+    as their browser must have set, and the second part (on click onwards) is for everytime the button is pressed. 
+    Specifically, when the button is pressed or toggled, we get the attribute that contained theme in the 
+    html tag (document.documentElement) to check what it is, if it is dark we change it to light, and vice versa. 
+    Everytime we also reassign the local storage so that after refreshes, the users preferences stay intact.
 6.  todo: make database in register page, after that login with those credentials
 add hasing and checking hash on passwords through that passwords library
+7.  implement a forgot password mechanism, and also a maybe a try again near the verify page
+8.  learn about how to implement a tooltip in css for light and dark mode, only on hover
+
