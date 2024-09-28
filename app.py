@@ -7,6 +7,7 @@ from dotenv import load_dotenv
 from werkzeug.security import check_password_hash, generate_password_hash
 import random
 import mysql.connector as sql
+from instance.hashing import hashing
 
 load_dotenv()
 
@@ -49,12 +50,15 @@ def login():
         c1.execute("SELECT * FROM user_auth WHERE email = (%s)", (email, ))
         emails = c1.fetchall()
         if len(emails) != 1:
-            return render_template("error.html", error="This email has not been registered, register first")
+            return render_template("error.html", error="This email has not been registered! WOOOOOOOOOOOOOOOOOOw wowow")
         
         c1.execute("SELECT password FROM user_auth WHERE email = (%s)", (email, ))
         dbpassword = c1.fetchone()[0] # first element of the returned tuple 
         # (fetchone returns a tuple, fetchall returns a list of tuples)
-        if not check_password_hash(dbpassword, password):
+        c1.execute("SELECT salt FROM user_auth WHERE email = (%s)", (email, ))
+        salt = c1.fetchone()[0]
+        checkpassword = salt+password
+        if not check_password_hash(dbpassword, checkpassword):
             return render_template("error.html", error="Enter valid password")
         
         session["user_id"] = email
@@ -131,14 +135,16 @@ def signup():
         if not confirmedpassword:
             return render_template("error.html", error="Confirm your password")
         if password != confirmedpassword:
-            return render_template("error.html", error="Confirmation password must match the password you entered")
+            return render_template("error.html", error="Confirmation password must match the password!")
         c1.execute("SELECT * FROM user_auth WHERE email = (%s)", (email,))
         rows = c1.fetchall()
         if rows:  
             return render_template("error.html", error="Email has already been registered")
         # try again button error handling
-        hash = generate_password_hash(password, method='pbkdf2', salt_length=16)
-        c1.execute("INSERT INTO user_auth (email, password) VALUES (%s, %s)", (email, hash))
+
+        hash, salt = hashing(password)
+
+        c1.execute("INSERT INTO user_auth (email, password, salt) VALUES (%s, %s, %s)", (email, hash, salt))
         conn.commit()
         return redirect("/login")
     else:

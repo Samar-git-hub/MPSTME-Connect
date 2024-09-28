@@ -75,10 +75,11 @@ header {
 .primary-container {
     border-color: var(--accent-color);
     border-style: solid;
-    border-radius: 3px;
-    padding: 10px;
-    padding-bottom: 5px;
-    display: inline-block;
+    border-radius: 0.5rem;
+    padding: 1rem;
+    padding-bottom: 0.5rem;
+    max-width: 100%;
+    box-sizing: border-box; /* this makes it so that width contains padding and border */
 }
 .error-image {
     height: 300px;
@@ -90,12 +91,21 @@ header {
 .subheader-font {
     font-size: 25px;
 }
+#error-text {
+    max-width: 450px;
+    word-break: normal; 
+    overflow-wrap: break-word;
+}
 .box-main {
     height: 80vh;
-    width: 98vw;
+    width: 90vw;
+    max-width: 500px;
     display: flex;
     align-items: center;
     justify-content: center;
+    margin: 0 auto;
+    padding: 1rem;
+    box-sizing: border-box;
 }
 #login-header {
     text-align: center;

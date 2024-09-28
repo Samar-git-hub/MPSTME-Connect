@@ -24,3 +24,6 @@ add hasing and checking hash on passwords through that passwords library
 7.  implement a forgot password mechanism, and also a maybe a try again near the verify page
 8.  learn about how to implement a tooltip in css for light and dark mode, only on hover
 test
+9. make the html css responsive
+10. can my instances file describe the db? ask chatgpt and write in the instamnmces folder maybe make a notes file
+
