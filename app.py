@@ -2,7 +2,7 @@ import os
 from flask import Flask, redirect, render_template, request, session, flash
 from flask_session import Session
 from flask_mail import Mail, Message
-from helper import login_required, verification_required
+from helper import login_required, verification_required, verify_required
 from dotenv import load_dotenv
 from werkzeug.security import check_password_hash, generate_password_hash
 import random
@@ -115,12 +115,13 @@ def verify():
         if not enteredverification == str(storedverification):
             return render_template("error.html", error="Verification code does not match")
         else:
+            session["valid"] = "valid"
             return redirect("/signup")
-        
     return render_template("verify.html")  
 
 @app.route("/signup", methods=["GET", "POST"])
 @verification_required
+@verify_required
 def signup():
     if request.method == "POST":
         email = request.form.get("email").lower()
@@ -153,7 +154,13 @@ def signup():
 @app.route("/profile")
 @login_required
 def profile():
-    return redirect("/")
+
+    return redirect("/upload")
+
+@app.route("/upload")
+@login_required
+def upload():
+    return render_template("upload.html")
 
 @app.route("/logout")
 @login_required

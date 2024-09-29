@@ -24,3 +24,14 @@ def verification_required(f):                                  # takes another f
 
     return decorated_function                           # decorated_function is returned 
                                                         # (with the changes in this inner function) from the login_required decorator
+
+def verify_required(f):                                  # takes another function f as an argument
+    @wraps(f)                                           # preserves the original functions meta data
+    def decorated_function(*args, **kwargs):
+        if session.get("valid") is None:              # checks if "user_id" is in the session
+            return redirect("/register")                   # if not redirects to log in page
+        return f(*args, **kwargs)                       # if it is there, call the original function, with whatever arguments or
+                                                        # keyword arguments passed into it
+
+    return decorated_function                           # decorated_function is returned 
+                                                        # (with the changes in this inner function) from the login_required decorator

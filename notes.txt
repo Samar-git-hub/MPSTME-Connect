@@ -19,11 +19,20 @@ milestones
     Specifically, when the button is pressed or toggled, we get the attribute that contained theme in the 
     html tag (document.documentElement) to check what it is, if it is dark we change it to light, and vice versa. 
     Everytime we also reassign the local storage so that after refreshes, the users preferences stay intact.
-6.  todo: make database in register page, after that login with those credentials
-add hasing and checking hash on passwords through that passwords library
+7.  abstracted away the hashing method to make it private, in the instances folder with the help of a python file,
+    and then imported that function through its module. For reference, from instance.hashing import hashing, 
+    means import the function hashing from the hashing file present in the instance folder
+8.  added responsive design for most parts if not all, and also added retry verification and an account
+    creation tab, so that the user could click on the tabs and retry entering the appropriate inputs.
+    this handles user end errors gracefully.
+
 7.  implement a forgot password mechanism, and also a maybe a try again near the verify page
 8.  learn about how to implement a tooltip in css for light and dark mode, only on hover
 test
 9. make the html css responsive
 10. can my instances file describe the db? ask chatgpt and write in the instamnmces folder maybe make a notes file
+
+7 add milestone 4
+8 added responsiveness to most of the elements to make it not look weird, did error handling to provide an option to the user to
+enter the verification code again if they put in the wrong code, and the same for the create account page (sign up page)
 

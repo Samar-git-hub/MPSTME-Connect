@@ -9,12 +9,12 @@
     --primary-rgba-opaque: rgba(164, 44, 214, 0.8);
 }
 [data-theme="light"] { /* can be toggled with light theme, thats why variables in the CSS */
-    --background-color: #EFEFF2;
+    --background-color: #f5d7d7;
     --text-color: #2F242C;
     --primary-color: #A42CD6;
-    --secondary-color: #EEB4B3;
+    --secondary-color: #f1b1b0;
     --accent-color: #C179B9;
-    --header-background: #502274;
+    --header-background: #C179B9;
     --primary-rgba: rgba(164, 44, 214, 1); /* hazy buttons, same color as primary */
     --primary-rgba-opaque: rgba(164, 44, 214, 0.8);
 }
@@ -31,9 +31,9 @@ a:hover{
 body {
     background-color: var(--background-color);
     color: var(--text-color);
-    margin-top: 100px;
-    margin-left: 20px;
-    margin-right: 20px;
+    margin-top: 5.5rem;
+    margin-left: 1.2rem;
+    margin-right: 1.2rem;
 }
 button {
     background-color: var(--primary-color);
@@ -47,13 +47,7 @@ header {
     position: fixed;
     display: flex;
     flex-direction: row;
-    height: 100px;
-}
-.navimage {
-    height: 50px;
-    width: auto;
-    margin-left: 20px;
-    margin-top: 5px;
+    height: 5.5rem;
 }
 .left-part {
     flex: 1;
@@ -68,8 +62,8 @@ header {
     justify-content: flex-end;
 }
 .navbar-tabs {
-    margin-left: 40px;
-    font-size: 20px;
+    margin-left: 2.5rem;
+    font-size: 1.2rem;
     color: white;
 }
 .primary-container {
@@ -82,24 +76,18 @@ header {
     box-sizing: border-box; /* this makes it so that width contains padding and border */
 }
 .error-image {
-    height: 300px;
-    width: auto;
-}
-.header-font {
-    font-size: 30px;
-}
-.subheader-font {
-    font-size: 25px;
+    height: auto;
+    max-width: 100%;
 }
 #error-text {
-    max-width: 450px;
+    max-width: 28rem;
     word-break: normal; 
     overflow-wrap: break-word;
 }
 .box-main {
     height: 80vh;
     width: 90vw;
-    max-width: 500px;
+    max-width: 31rem;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -108,46 +96,46 @@ header {
     box-sizing: border-box;
 }
 #login-header {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
     text-align: center;
-    margin-top: 80px;
-    margin-bottom: 80px;
 }
 #login-subheader {
     text-align: center;
-    margin-bottom: 40px;
+    margin-bottom: 1rem;
 }
 #register-header {
     text-align: center;
-    margin-top: 20px;
-    margin-bottom: 20px;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
 }
 #register-subheader {
     text-align: center;
     width: 100%; 
-    max-width: 500px; 
-    margin-top: 5px;
+    max-width: 32rem; 
+    margin-top: 0.5rem;
     word-wrap: break-word;
     text-align: left;
 }
 .primary-container-login {
     display: flex;
     flex-direction: column;
-    margin-top: 50px;
-    padding-left: 50px;
-    padding-right: 50px;
+    margin-top: 2.5rem;
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
 }
 .input-box {
     display: block;
-    height: 40px;
+    height: 2.5rem;
     display: block;
     width: 100%;
-    margin-top: 50px;
-    margin-bottom: 60px;
+    margin-top: 3rem;
+    margin-bottom: 3.5rem;
     background-color: transparent;
     border: none;
     border-bottom: 2px solid var(--accent-color);
     color: var(--text-color);
-    font-size: 20px;
+    font-size: 1.2rem;
 }
 .input-box::placeholder {
     color: var(--text-color);
@@ -158,7 +146,7 @@ header {
 }
 .submit-button {
     border: none;
-    font-size: 20px;
+    font-size: 1.2rem;
     display: block;
     width: 100%;
     height: 50px;
@@ -184,11 +172,72 @@ header {
     padding-top: 20px;
     padding-bottom: 20px;
 }
+.header-font {
+    font-size: 2rem; 
+}
+.subheader-font {
+    font-size: 1.5rem; 
+}
+.navimage {
+    height: 2.5rem;
+    width: auto;
+    margin-left: 1.5rem;
+    margin-top: 0.5rem;
+}
 #toggle-button {
-    height: 25px;
-    margin-top: 10px;
-    margin-right: 20px;
-    margin-left: -20px;
+    height: 1.5rem;
+    margin-top: 0.5rem;
+    margin-right: 1.2rem;
+    margin-left: -1.2rem;
     width: auto;
     cursor: pointer;
+}
+/* for smaller devices (tabs esque) */
+@media (max-width: 768px) {
+    :root {
+        font-size: 14px; 
+    }
+    .header-font {
+        font-size: 1.8rem; 
+    }
+    .subheader-font {
+        font-size: 1.3rem;
+    }
+    .navimage {
+        height: 2.3rem;
+    }
+    #toggle-button {
+        height: 1.3rem;
+    }
+    .input-box {
+        font-size: 1rem;
+    }
+    .submit-button {
+        font-size: 1rem;
+    }
+}
+/* phone esque */
+@media (max-width: 480px) {
+    :root {
+        font-size: 12px; 
+    }
+
+    .header-font {
+        font-size: 1.6rem; 
+    }
+    .subheader-font {
+        font-size: 1.2rem;
+    }
+    .navimage {
+        height: 2rem;
+    }
+    #toggle-button {
+        height: 1rem;
+    }
+    .input-box {
+        font-size: 1rem;
+    }
+    .submit-button {
+        font-size: 1rem;
+    }
 }

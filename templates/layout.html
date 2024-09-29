@@ -15,7 +15,7 @@
         <header>
             <div class="left-part">
                 <a href="/">
-                    <img src="/static/logo.svg" class="navimage">
+                    <img id="logo" src="/static/logo-light.svg" class="navimage">
                 </a>
             </div>
             <div class="right-part">
@@ -26,9 +26,23 @@
                     <div class="navbar-tabs"><a href="/logout">Log out</a></div>
                     <div class="navbar-tabs"><img id="toggle-button" src="/static/moontheme.png"></div>
                 {% else %}
-                    <div class="navbar-tabs"><a href="/register">Register</a></div>
-                    <div class="navbar-tabs"><a href="/login">Log in</a></div>
-                    <div class="navbar-tabs"><img id="toggle-button" src="/static/moontheme.png"></div>
+                    {% if session["verification_code"] %}
+                        {% if session["valid"] %}
+                            <div class="navbar-tabs"><a href="/signup">Create your account</a></div>
+                            <div class="navbar-tabs"><a href="/register">Register</a></div>
+                            <div class="navbar-tabs"><a href="/login">Log in</a></div>
+                            <div class="navbar-tabs"><img id="toggle-button" src="/static/moontheme.png"></div>
+                        {% else %}
+                            <div class="navbar-tabs"><a href="/verify">Retry verification</a></div>
+                            <div class="navbar-tabs"><a href="/register">Register</a></div>
+                            <div class="navbar-tabs"><a href="/login">Log in</a></div>
+                            <div class="navbar-tabs"><img id="toggle-button" src="/static/moontheme.png"></div>
+                        {% endif %}
+                    {% else %}
+                        <div class="navbar-tabs"><a href="/register">Register</a></div>
+                        <div class="navbar-tabs"><a href="/login">Log in</a></div>
+                        <div class="navbar-tabs"><img id="toggle-button" src="/static/moontheme.png"></div>
+                    {% endif %}
                 {% endif %}
             </div>
         </header>
