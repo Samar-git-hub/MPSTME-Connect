@@ -13,7 +13,7 @@
     --text-color: #2F242C;
     --primary-color: #A42CD6;
     --secondary-color: #f1b1b0;
-    --accent-color: #C179B9;
+    --accent-color: #502274;
     --header-background: #C179B9;
     --primary-rgba: rgba(164, 44, 214, 1); /* hazy buttons, same color as primary */
     --primary-rgba-opaque: rgba(164, 44, 214, 0.8);
@@ -31,7 +31,7 @@ a:hover{
 body {
     background-color: var(--background-color);
     color: var(--text-color);
-    margin-top: 5.5rem;
+    margin-top: 5.4rem;
     margin-left: 1.2rem;
     margin-right: 1.2rem;
 }
@@ -48,6 +48,7 @@ header {
     display: flex;
     flex-direction: row;
     height: 5.5rem;
+    z-index: 100;
 }
 .left-part {
     flex: 1;
@@ -192,6 +193,136 @@ header {
     width: auto;
     cursor: pointer;
 }
+.main-profile-container {
+    display: flex;
+}
+.profile-left {
+    border-color: var(--accent-color);
+    border-style: solid;
+    border-radius: 0.5rem;
+    padding: 1rem;
+    padding-bottom: 0.5rem;
+    max-width: 18rem;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    margin: 2rem;
+}
+.top-part-left {
+    flex: 1;
+    display: flex; 
+    width: 100%;
+    justify-content: center; 
+    align-items: center;
+    position: relative; /* to use position absolute on the pen icon child element */
+}
+.profile-pic {
+    width: 100%;
+    height: auto;
+    border-radius: 50%; 
+    object-fit: cover;
+    border-color: var(--accent-color);
+    border-style: solid;
+
+}
+.edit-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-color: black;
+    cursor: pointer;
+    position: absolute;
+    right: 0.8rem;
+    bottom: 0.5rem;
+    background-color: rgb(234, 234, 234);
+}
+.pen-icon {
+    object-fit: cover;
+    width: 70%;
+    height: 70%
+}
+.bottom-part-left {
+    height: 40vh;
+    width: 100%;
+}
+.profile-name {
+    font-size: 1.5rem;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+}
+.profile-subhead {
+    font-size: 0.9rem;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    word-break: break-word;
+}
+.profile-head {
+    font-size: 1.2rem;
+    margin-top: 1.2rem;
+    margin-bottom: 1.2rem;
+    word-break: break-word;
+    color: var(--accent-color);
+}
+#endorsements-number {
+    margin-top: 0rem;
+    margin-bottom: 0rem;
+    display: inline-block;
+}
+#endorsements {
+    display: inline-block;
+    margin-left: 0.5rem;
+    font-size: 1.2rem;
+    margin-top: 0rem;
+    margin-bottom: 0rem;
+}
+.profile-middle {
+    border-color: var(--accent-color);
+    border-style: solid;
+    border-radius: 0.5rem;
+    padding: 1rem;
+    padding-bottom: 0.5rem;
+    width: 150rem;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    margin: 2rem;
+    margin-left: 0rem;
+}
+.top-part-middle {
+    width: 100%;
+}
+.profile-right {
+    border-color: var(--accent-color);
+    border-style: solid;
+    border-radius: 0.5rem;
+    padding: 1rem;
+    padding-bottom: 0.5rem;
+    width: 100%;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    margin: 2rem;
+    margin-left: 0rem;
+}
+.top-part-right {
+    width: 100%;
+    flex: 1;
+}
+.bottom-part-right {
+    height: 40vh;
+}
+#profile-edit-button {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 0.5rem;
+    margin-top: 1.5rem;
+    cursor: pointer;
+    border-radius: 0.2rem;
+}
 /* for smaller devices (tabs esque) */
 @media (max-width: 768px) {
     :root {
@@ -213,6 +344,12 @@ header {
         font-size: 1rem;
     }
     .submit-button {
+        font-size: 1rem;
+    }
+    .profile-subhead {
+        font-size: 0.7rem;
+    }
+    .profile-head {
         font-size: 1rem;
     }
 }
@@ -239,5 +376,11 @@ header {
     }
     .submit-button {
         font-size: 1rem;
+    }
+    .profile-subhead {
+        font-size: 0.5rem;
+    }
+    .profile-head {
+        font-size: 0.8rem;
     }
 }

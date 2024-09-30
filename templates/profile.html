@@ -5,5 +5,75 @@
 {% endblock %}
 
 {% block body %}
-
+<div class="main-profile-container">
+    <div class="profile-left">
+        <div class="top-part-left">
+            <img class="profile-pic" src="/static/favicon.jpg">
+            <a href="/upload" class="edit-icon">
+                <img src="/static/pen-icon.png" alt="Edit" class="pen-icon">
+            </a>
+        </div>
+        <div class="bottom-part-left">
+            <div class="profile-name">{{ first }} {{ last }}</div> <!-- split the email-->
+            <div id="endorsements-number" class="profile-head">{{ number }}</div>
+            <div id="endorsements" class="profile-subhead">endorsements</div> <!-- show number -->
+            <div class="profile-head">Academic description:</div>
+            <div class="profile-subhead">Btech CE 2nd year, tech executive munsoc
+                tech executive datamavericks
+                {{ academic }}</div>
+        </div>
+    </div>
+    <div class="profile-middle">
+        <div class="top-part-middle">
+            <div class="profile-head">Bio</div>
+            <div class="profile-subhead">
+                Im working on webdevelopment and im a research intern in my univeristy wwwww
+                {{ bio }}
+            </div>
+        </div>
+        <div class="bottom-part-middle">
+            <div class="profile-head">Skills</div>
+            <div class="profile-subhead">
+                I'm good with html, css, javascript, python and flask
+                {{ skills }}
+            </div> 
+            <div class="profile-head">Interests</div>
+            <div>
+                I'm interested in learning python and completing cs50 courses
+                {{ interests }}
+            </div>
+            <div class="profile-head">Soft Skills</div><!-- max select only 4-->
+            <div class="profile-subhead">
+                I'm good at public speaking, and time management
+                {{ softskills }}
+            </div>
+        </div>
+    </div>
+    <div class="profile-right">
+        <div class="top-part-right">
+            <div class="profile-head">Projects</div>
+            <div class="profile-subhead">
+                <li>demo 1</li>
+                <li>demo 1</li>
+            </div>
+        </div>
+        <div class="bottom-part-right">
+            <div class="profile-head">Links</div>
+            <div class="profile-subhead">
+                <li>github</li>
+                <li>instagram</li>
+            </div>
+            <div class="profile-head">Achievements</div>
+            <div class="profile-subhead">
+                <li>Finished cs50</li>
+                <li>3rd in iitb mun</li>
+            </div>
+            <button type="submit" id="profile-edit-button">
+                <a href="/details">
+                    Edit Profile
+                </a>
+            </button>
+        </div>
+    </div>
+</div>
 {% endblock %}

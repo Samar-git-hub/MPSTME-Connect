@@ -31,8 +31,15 @@ milestones
 test
 9. make the html css responsive
 10. can my instances file describe the db? ask chatgpt and write in the instamnmces folder maybe make a notes file
+11. add a drop down menu for all the navbar tabs like raisegate to hide tabs when reducing the size of the window.
+this should make it look better on smaller devices.
+12. need to make a profile page and an upload page for the pictures for users to upload
+13. system to validate people's skills do they really have those skills?
 
-7 add milestone 4
-8 added responsiveness to most of the elements to make it not look weird, did error handling to provide an option to the user to
-enter the verification code again if they put in the wrong code, and the same for the create account page (sign up page)
-
+14. database table for profile could take in id as foreign key
+with that connections number
+actual skills (max 5)
+interests 5
+soft skills (max 5)
+check back tab doesnt work on logout
+edit the font size for all the headers with media queries

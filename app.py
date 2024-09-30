@@ -154,8 +154,18 @@ def signup():
 @app.route("/profile")
 @login_required
 def profile():
-
-    return redirect("/upload")
+    email = session["user_id"]
+    username = email.split('@')[0]
+    namelist = username.split(".")
+    first = namelist[0]
+    second = namelist[1]
+    last = ""
+    for i in second:
+        if i.isalpha():
+            last += i
+    
+    # have to do the number of endorsements and academic description logic from the database (make another table)
+    return render_template("profile.html", first=first.capitalize(), last=last.capitalize(), number = 5, academic = "wow")
 
 @app.route("/upload")
 @login_required
