@@ -1,10 +1,10 @@
 :root { /* When no attribute is set (like dark or white, the below styles apply. So by default dark styles */
-    --background-color: #2F242C;
+    --background-color: #0B1B2D;
     --text-color: #FFFFFF;
     --primary-color: #A42CD6; /* main color other than font and background, for buttons etc*/
     --secondary-color: #C179B9; /* compliments primary */
-    --accent-color: #EEB4B3; /* sometimes */
-    --header-background: #502274; /* for navbar or header */
+    --accent-color: #C179B9; /* sometimes */
+    --header-background: #182A3D; /* for navbar or header */
     --primary-rgba: rgba(164, 44, 214, 1); /* hazy buttons after clicking */
     --primary-rgba-opaque: rgba(164, 44, 214, 0.8);
 }
@@ -68,8 +68,7 @@ header {
     color: white;
 }
 .primary-container {
-    border-color: var(--accent-color);
-    border-style: solid;
+    border: 0.1rem solid var(--accent-color);
     border-radius: 0.5rem;
     padding: 1rem;
     padding-bottom: 0.5rem;
@@ -134,7 +133,7 @@ header {
     margin-bottom: 3.5rem;
     background-color: transparent;
     border: none;
-    border-bottom: 2px solid var(--accent-color);
+    border-bottom: 0.1rem solid var(--accent-color);
     color: var(--text-color);
     font-size: 1.2rem;
 }
@@ -170,8 +169,8 @@ header {
     margin-bottom: 30px;
 }
 .primary-container-register {
-    padding-top: 20px;
-    padding-bottom: 20px;
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
 }
 .header-font {
     font-size: 2rem; 
@@ -197,8 +196,6 @@ header {
     display: flex;
 }
 .profile-left {
-    border-color: var(--accent-color);
-    border-style: solid;
     border-radius: 0.5rem;
     padding: 1rem;
     padding-bottom: 0.5rem;
@@ -207,6 +204,7 @@ header {
     display: flex;
     flex-direction: column;
     margin: 2rem;
+    border: 0.1rem solid var(--accent-color);
 }
 .top-part-left {
     flex: 1;
@@ -217,21 +215,20 @@ header {
     position: relative; /* to use position absolute on the pen icon child element */
 }
 .profile-pic {
-    width: 100%;
+    width: 12rem; /* Set a fixed width */
+    height: 12rem; 
     height: auto;
     border-radius: 50%; 
     object-fit: cover;
-    border-color: var(--accent-color);
-    border-style: solid;
-
+    border: 0.1rem solid var(--accent-color);
 }
 .edit-icon {
     display: flex;
     justify-content: center;
     align-items: center;
     border-radius: 50%;
-    width: 2.5rem;
-    height: 2.5rem;
+    width: 1.8rem;
+    height: 1.8rem;
     border-color: black;
     cursor: pointer;
     position: absolute;
@@ -279,8 +276,7 @@ header {
     margin-bottom: 0rem;
 }
 .profile-middle {
-    border-color: var(--accent-color);
-    border-style: solid;
+    border: 0.1rem solid var(--accent-color);
     border-radius: 0.5rem;
     padding: 1rem;
     padding-bottom: 0.5rem;
@@ -295,8 +291,7 @@ header {
     width: 100%;
 }
 .profile-right {
-    border-color: var(--accent-color);
-    border-style: solid;
+    border: 0.1rem solid var(--accent-color);
     border-radius: 0.5rem;
     padding: 1rem;
     padding-bottom: 0.5rem;

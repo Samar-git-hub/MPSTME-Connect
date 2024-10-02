@@ -1,9 +1,38 @@
 {% extends "layout.html" %}
 
 {% block title %}
-    Index
+    Details
 {% endblock %}
 
 {% block body %}
-    <p>Index</p>
+<form method="POST" action="/details">
+    <input type="hidden" name="form_type" value="bio"> <!-- Identify form -->
+    <label for="bio">Bio:</label>
+    <textarea name="bio" id="bio" required></textarea>
+    <button type="submit">Update Bio</button>
+</form>
+
+<!-- Skills Section -->
+<form method="POST" action="/details">
+    <input type="hidden" name="form_type" value="skills"> <!-- Identify form -->
+    <label for="skills">Skills:</label>
+    <input type="text" name="skills" id="skills" required>
+    <button type="submit">Update Skills</button>
+</form>
+
+<!-- Projects Section -->
+<form method="POST" action="/details">
+    <input type="hidden" name="form_type" value="projects"> <!-- Identify form -->
+    <label for="projects">Projects:</label>
+    <input type="text" name="projects" id="projects" required>
+    <button type="submit">Update Projects</button>
+</form>
+
+<!-- Achievements Section -->
+<form method="POST" action="/details">
+    <input type="hidden" name="form_type" value="achievements"> <!-- Identify form -->
+    <label for="achievements">Achievements:</label>
+    <input type="text" name="achievements" id="achievements" required>
+    <button type="submit">Update Achievements</button>
+</form>
 {% endblock %}

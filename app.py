@@ -172,6 +172,12 @@ def profile():
 def upload():
     return render_template("upload.html")
 
+@app.route("/details")
+@login_required
+def details():
+
+    return render_template("details.html")
+
 @app.route("/logout")
 @login_required
 def logout():

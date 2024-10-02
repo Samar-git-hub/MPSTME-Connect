@@ -43,3 +43,5 @@ interests 5
 soft skills (max 5)
 check back tab doesnt work on logout
 edit the font size for all the headers with media queries
+make the profile page responsive, aned make a separate page for editing details 
+check about licenses and open source and then even deciding whether schemas should be public
