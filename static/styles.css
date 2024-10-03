@@ -39,6 +39,15 @@ button {
     background-color: var(--primary-color);
     color: var(--text-color);
 }
+textarea {
+    width: 100%;
+    height: 5rem; 
+    padding: 0.5rem;
+    box-sizing: border-box; 
+    background-color: transparent;
+    color: var(--text-color);
+    border: 0.1rem solid var(--accent-color);
+}
 header {
     background-color: var(--header-background);
     top: 0;
@@ -49,6 +58,9 @@ header {
     flex-direction: row;
     height: 5.5rem;
     z-index: 100;
+}
+.layers {
+    display: inline-block;
 }
 .left-part {
     flex: 1;
@@ -149,11 +161,21 @@ header {
     font-size: 1.2rem;
     display: block;
     width: 100%;
-    height: 50px;
+    height: 3rem;
     border-radius: 50px;
     cursor: pointer;
     margin-top: 10px;
     margin-bottom: 10px;
+    transition: box-shadow 0.3s ease;
+    color: white;
+}
+.submit-button-details {
+    display: block;
+    border: none;
+    font-size: 1.2rem;
+    height: 2rem;
+    border-radius: 3rem;
+    cursor: pointer;
     transition: box-shadow 0.3s ease;
     color: white;
 }
@@ -194,6 +216,7 @@ header {
 }
 .main-profile-container {
     display: flex;
+    padding-top: 1.5rem;
 }
 .profile-left {
     border-radius: 0.5rem;
@@ -227,14 +250,14 @@ header {
     justify-content: center;
     align-items: center;
     border-radius: 50%;
-    width: 1.8rem;
-    height: 1.8rem;
+    width: 2rem;
+    height: 2rem;
     border-color: black;
     cursor: pointer;
     position: absolute;
-    right: 0.8rem;
-    bottom: 0.5rem;
-    background-color: rgb(234, 234, 234);
+    right: 1rem;
+    bottom: 0.8rem;
+    background-color: rgb(215, 215, 215);
 }
 .pen-icon {
     object-fit: cover;
@@ -242,7 +265,7 @@ header {
     height: 70%
 }
 .bottom-part-left {
-    height: 40vh;
+    height: 100%;
     width: 100%;
 }
 .profile-name {
@@ -317,6 +340,23 @@ header {
     margin-top: 1.5rem;
     cursor: pointer;
     border-radius: 0.2rem;
+}
+.main-details-container {
+    display: flex;
+    padding-top: 1.5rem;
+}
+.primary-container-details {
+    border: 0.1rem solid var(--accent-color);
+    border-radius: 0.5rem;
+    padding: 2.5rem;
+    padding-top: 1rem;
+    padding-bottom: 0.5rem;
+    width: 40rem; /* Set the desired width */
+    max-width: 100%; /* Ensure it doesn't exceed the screen width */
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto; /* Center the container horizontally */
 }
 /* for smaller devices (tabs esque) */
 @media (max-width: 768px) {

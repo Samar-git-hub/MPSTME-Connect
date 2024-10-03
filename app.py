@@ -167,11 +167,6 @@ def profile():
     # have to do the number of endorsements and academic description logic from the database (make another table)
     return render_template("profile.html", first=first.capitalize(), last=last.capitalize(), number = 5, academic = "wow")
 
-@app.route("/upload")
-@login_required
-def upload():
-    return render_template("upload.html")
-
 @app.route("/details")
 @login_required
 def details():

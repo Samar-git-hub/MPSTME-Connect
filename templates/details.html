@@ -5,34 +5,42 @@
 {% endblock %}
 
 {% block body %}
-<form method="POST" action="/details">
-    <input type="hidden" name="form_type" value="bio"> <!-- Identify form -->
-    <label for="bio">Bio:</label>
-    <textarea name="bio" id="bio" required></textarea>
-    <button type="submit">Update Bio</button>
-</form>
-
-<!-- Skills Section -->
-<form method="POST" action="/details">
-    <input type="hidden" name="form_type" value="skills"> <!-- Identify form -->
-    <label for="skills">Skills:</label>
-    <input type="text" name="skills" id="skills" required>
-    <button type="submit">Update Skills</button>
-</form>
-
-<!-- Projects Section -->
-<form method="POST" action="/details">
-    <input type="hidden" name="form_type" value="projects"> <!-- Identify form -->
-    <label for="projects">Projects:</label>
-    <input type="text" name="projects" id="projects" required>
-    <button type="submit">Update Projects</button>
-</form>
-
-<!-- Achievements Section -->
-<form method="POST" action="/details">
-    <input type="hidden" name="form_type" value="achievements"> <!-- Identify form -->
-    <label for="achievements">Achievements:</label>
-    <input type="text" name="achievements" id="achievements" required>
-    <button type="submit">Update Achievements</button>
-</form>
+<div class="main-details-container">
+    <div class="primary-container-details">
+        <div class="header-font" id="register-header">Edit your details</div>
+        <div class="layers">
+        <form action="/upload" method="POST" enctype="multipart/form-data">
+            <label for="file">Select a new profile picture:</label>
+            <input type="file" id="file" name="file" accept="image/*">
+            <button type="submit">Upload</button>
+        </form>
+        <div class="subheader-font" id="register-subheader">Bio</div>
+        <form method="POST" action="/details">
+            <input type="hidden" name="form_type" value="bio"> 
+            <textarea name="bio" id="bio" required></textarea>
+            <button class="submit-button-details" type="submit" >Save</button>
+        </form>
+        </div>
+        <div class="layers">
+        <div class="subheader-font" id="register-subheader">Skills</div>
+        <form method="POST" action="/details">
+            <input type="hidden" name="form_type" value="skills">
+            <textarea name="skills" id="skills" required></textarea>
+            <button class="submit-button-details" type="submit" >Save</button>
+        </form>
+        <div class="subheader-font" id="register-subheader">Projects</div>
+        <form method="POST" action="/details">
+            <input type="hidden" name="form_type" value="projects">
+            <textarea name="projects" id="projects" required></textarea>
+            <button class="submit-button-details" type="submit" >Save</button>
+        </form>
+        <div class="subheader-font" id="register-subheader">Achievements</div>
+        <form method="POST" action="/details">
+            <input type="hidden" name="form_type" value="achievements">
+            <textarea name="achievements" id="achievements" required></textarea>
+            <button class="submit-button-details" type="submit" >Save</button>
+        </form>
+    </div>
+    </div>
+</main>
 {% endblock %}
