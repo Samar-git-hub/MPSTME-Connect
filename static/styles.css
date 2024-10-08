@@ -40,13 +40,14 @@ button {
     color: var(--text-color);
 }
 textarea {
-    width: 100%;
-    height: 5rem; 
-    padding: 0.5rem;
     box-sizing: border-box; 
+    width: 25rem;
+    height: 10rem; 
+    padding: 0.5rem;
     background-color: transparent;
     color: var(--text-color);
     border: 0.1rem solid var(--accent-color);
+    resize: none;
 }
 header {
     background-color: var(--header-background);
@@ -58,9 +59,6 @@ header {
     flex-direction: row;
     height: 5.5rem;
     z-index: 100;
-}
-.layers {
-    display: inline-block;
 }
 .left-part {
     flex: 1;
@@ -237,6 +235,10 @@ header {
     align-items: center;
     position: relative; /* to use position absolute on the pen icon child element */
 }
+.edit-pic-details {
+    position: relative;
+    display: inline-block;
+}
 .profile-pic {
     width: 12rem; /* Set a fixed width */
     height: 12rem; 
@@ -244,6 +246,14 @@ header {
     border-radius: 50%; 
     object-fit: cover;
     border: 0.1rem solid var(--accent-color);
+}
+.profile-pic-details {
+    width: 10rem; /* Set a fixed width */
+    height: 10rem;
+    border-radius: 50%; 
+    object-fit: cover;
+    border: 0.1rem solid var(--accent-color);    
+    box-sizing: border-box; 
 }
 .edit-icon {
     display: flex;
@@ -259,10 +269,29 @@ header {
     bottom: 0.8rem;
     background-color: rgb(215, 215, 215);
 }
+.edit-icon-details {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    right: 1rem; 
+    bottom: 0.8rem; 
+    width: 2rem;  
+    height: 2rem;
+    cursor: pointer;
+    border-color: black;
+    background-color: rgb(215, 215, 215);
+    border-radius: 50%;
+}
 .pen-icon {
     object-fit: cover;
     width: 70%;
-    height: 70%
+    height: 70%;
+}
+.pen-icon-details {
+    object-fit: cover;
+    width: 70%;
+    height: 70%; 
 }
 .bottom-part-left {
     height: 100%;
@@ -351,12 +380,32 @@ header {
     padding: 2.5rem;
     padding-top: 1rem;
     padding-bottom: 0.5rem;
-    width: 40rem; /* Set the desired width */
+    width: 100%; /* Set the desired width */
     max-width: 100%; /* Ensure it doesn't exceed the screen width */
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
     margin: 0 auto; /* Center the container horizontally */
+}
+#details-header {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+#details-subheader {
+    font-size: 1.5rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+.details-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    width: 100%; 
+}
+.text-area-box {
+    display: inline-block; 
+    position: relative;
+    margin-left: 5rem;
+    height: 100%;
 }
 /* for smaller devices (tabs esque) */
 @media (max-width: 768px) {

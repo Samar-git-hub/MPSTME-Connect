@@ -7,21 +7,37 @@
 {% block body %}
 <div class="main-details-container">
     <div class="primary-container-details">
-        <div class="header-font" id="register-header">Edit your details</div>
-        <div class="layers">
-        <form action="/upload" method="POST" enctype="multipart/form-data">
-            <label for="file">Select a new profile picture:</label>
-            <input type="file" id="file" name="file" accept="image/*">
-            <button type="submit">Upload</button>
-        </form>
-        <div class="subheader-font" id="register-subheader">Bio</div>
-        <form method="POST" action="/details">
-            <input type="hidden" name="form_type" value="bio"> 
-            <textarea name="bio" id="bio" required></textarea>
-            <button class="submit-button-details" type="submit" >Save</button>
-        </form>
+        <div class="header-font" id="details-header">Edit your details</div>
+        <div> <!-- div to keep edit-pic-details inline block-->
+            <div class="edit-pic-details">
+                <div class="subheader-font" id="details-subheader">Profile Picture</div>
+                <img class="profile-pic-details" src="/static/black-white-logo.png" alt="Profile Picture">
+                <input type="file" id="file" name="file" accept="image/*" style="display: none;">
+                <form action="/upload" method="POST" enctype="multipart/form-data">
+                    <button type="submit" id="upload-button" style="display:none;">Upload</button>
+                </form>
+                <div class="edit-icon-details">
+                    <img src="/static/pen-icon.png" alt="Edit" class="pen-icon-details" id="pen-icon">                
+                </div>
+            </div>
+            <div class="text-area-box">
+                <div class="subheader-font" id="details-subheader">Bio</div>
+                <form method="POST" action="/details">
+                    <input type="hidden" name="form_type" value="bio"> 
+                    <textarea name="bio" id="bio" required></textarea>
+                    <button type="submit" id="profile-edit-button">Save</button>
+                </form>
+            </div>
         </div>
-        <div class="layers">
+        <!-- add here for adding below -->
+        <!-- <div>
+            <div class="subheader-font" id="details-subheader">Bio</div>
+            <form method="POST" action="/details">
+                <input type="hidden" name="form_type" value="bio"> 
+                <textarea name="bio" id="bio" required></textarea>
+                <button class="submit-button-details" type="submit" >Save</button>
+            </form>
+        </div>
         <div class="subheader-font" id="register-subheader">Skills</div>
         <form method="POST" action="/details">
             <input type="hidden" name="form_type" value="skills">
@@ -39,8 +55,7 @@
             <input type="hidden" name="form_type" value="achievements">
             <textarea name="achievements" id="achievements" required></textarea>
             <button class="submit-button-details" type="submit" >Save</button>
-        </form>
+        </form> -->
     </div>
-    </div>
-</main>
+</div>
 {% endblock %}
