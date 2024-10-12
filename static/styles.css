@@ -382,7 +382,7 @@ header {
     flex: 1;
 }
 .bottom-part-right {
-    height: 40vh;
+    height: 100%;
 }
 #profile-edit-button {
     background-color: var(--primary-color);
