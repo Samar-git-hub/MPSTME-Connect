@@ -48,6 +48,18 @@ textarea {
     color: var(--text-color);
     border: 0.1rem solid var(--accent-color);
     resize: none;
+    font-size: 1rem;
+}
+
+.text-area-2 {
+    box-sizing: border-box; 
+    width: 25rem;
+    height: 8rem; 
+    padding: 0.5rem;
+    background-color: transparent;
+    color: var(--text-color);
+    border: 0.1rem solid var(--accent-color);
+    resize: none;
 }
 header {
     background-color: var(--header-background);
@@ -236,8 +248,8 @@ header {
     position: relative; /* to use position absolute on the pen icon child element */
 }
 .edit-pic-details {
-    position: relative;
     display: inline-block;
+    position: relative;
 }
 .profile-pic {
     width: 12rem; /* Set a fixed width */
@@ -275,7 +287,7 @@ header {
     justify-content: center;
     align-items: center;
     right: 1rem; 
-    bottom: 0.8rem; 
+    bottom: 4rem; 
     width: 2rem;  
     height: 2rem;
     cursor: pointer;
@@ -379,7 +391,7 @@ header {
     border-radius: 0.5rem;
     padding: 2.5rem;
     padding-top: 1rem;
-    padding-bottom: 0.5rem;
+    padding-bottom: 1.5rem;
     width: 100%; /* Set the desired width */
     max-width: 100%; /* Ensure it doesn't exceed the screen width */
     box-sizing: border-box;
@@ -404,8 +416,55 @@ header {
 .text-area-box {
     display: inline-block; 
     position: relative;
-    margin-left: 5rem;
+    margin-right: 5rem;
     height: 100%;
+}
+.text-area-box-2 {
+    display: inline-block; 
+    position: relative;
+    height: 100%;
+}
+.input-details-box {
+    display: inline-block; 
+    position: relative;
+    margin-left: 4rem;
+    height: 100%;
+}
+.input-details-box-2 {
+    display: inline-block; 
+    position: relative;
+    margin-right: 5rem;
+    height: 100%;
+}
+.upper-details {
+    display: flex;
+    justify-content: space-between;
+}
+.middle-details {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 4rem;
+    margin-bottom: 4rem;
+}
+.lower-details {
+    display: flex;
+    justify-content: space-between;
+}
+.textbox-details {
+    margin-bottom: 1rem;
+    width: 90%; 
+    background-color: transparent;
+    border: none;
+    border-bottom: 0.1rem solid var(--accent-color);
+    padding: 0.5rem;
+    color: var(--text-color);
+}
+.textbox-details::placeholder {
+    color: var(--text-color);
+    opacity: 1; 
+}
+.textbox-details:focus {
+    outline: none; 
 }
 /* for smaller devices (tabs esque) */
 @media (max-width: 768px) {
