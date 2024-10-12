@@ -167,11 +167,14 @@ def profile():
     # have to do the number of endorsements and academic description logic from the database (make another table)
     return render_template("profile.html", first=first.capitalize(), last=last.capitalize(), number = 5, academic = "wow")
 
-@app.route("/details")
+@app.route("/details", methods=["GET", "POST"])
 @login_required
 def details():
-
-    return render_template("details.html")
+    if request.method == 'POST':
+        
+        return redirect('/profile')
+    else:
+        return render_template("details.html")
 
 @app.route("/logout")
 @login_required

@@ -153,6 +153,10 @@ header {
     padding-left: 2.5rem;
     padding-right: 2.5rem;
 }
+.inputs-flex {
+    display: flex;
+    flex-direction: column;
+}
 .input-box {
     display: block;
     height: 2.5rem;
@@ -294,7 +298,7 @@ header {
     justify-content: center;
     align-items: center;
     right: 1rem; 
-    bottom: 4rem; 
+    bottom: 0.5rem; 
     width: 2rem;  
     height: 2rem;
     cursor: pointer;
@@ -487,6 +491,10 @@ header {
 }
 .textbox-details-academics:focus {
     outline: none; 
+}
+.button-details {
+    display: flex;
+    justify-content: right;
 }
 /* for smaller devices (tabs esque) */
 @media (max-width: 768px) {
