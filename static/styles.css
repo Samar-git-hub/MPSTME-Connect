@@ -7,10 +7,12 @@
     --header-background: #182A3D; /* for navbar or header */
     --primary-rgba: rgba(164, 44, 214, 1); /* hazy buttons after clicking */
     --primary-rgba-opaque: rgba(164, 44, 214, 0.8);
+    --text-color-2: rgb(182, 182, 182);
 }
 [data-theme="light"] { /* can be toggled with light theme, thats why variables in the CSS */
     --background-color: #f5d7d7;
     --text-color: #2F242C;
+    --text-color-2: rgb(85, 85, 85);
     --primary-color: #A42CD6;
     --secondary-color: #f1b1b0;
     --accent-color: #502274;
@@ -50,7 +52,9 @@ textarea {
     resize: none;
     font-size: 1rem;
 }
-
+textarea::placeholder {
+    color: var(--text-color-2)
+}
 .text-area-2 {
     box-sizing: border-box; 
     width: 25rem;
@@ -60,6 +64,9 @@ textarea {
     color: var(--text-color);
     border: 0.1rem solid var(--accent-color);
     resize: none;
+}
+.text-area-2::placeholder {
+    color: var(--text-color-2)
 }
 header {
     background-color: var(--header-background);
@@ -416,7 +423,6 @@ header {
 .text-area-box {
     display: inline-block; 
     position: relative;
-    margin-right: 5rem;
     height: 100%;
 }
 .text-area-box-2 {
@@ -433,7 +439,6 @@ header {
 .input-details-box-2 {
     display: inline-block; 
     position: relative;
-    margin-right: 5rem;
     height: 100%;
 }
 .upper-details {
@@ -451,8 +456,9 @@ header {
     justify-content: space-between;
 }
 .textbox-details {
+    box-sizing: border-box; 
     margin-bottom: 1rem;
-    width: 90%; 
+    width: 25rem;
     background-color: transparent;
     border: none;
     border-bottom: 0.1rem solid var(--accent-color);
@@ -460,10 +466,26 @@ header {
     color: var(--text-color);
 }
 .textbox-details::placeholder {
-    color: var(--text-color);
+    color: var(--text-color-2);
     opacity: 1; 
 }
 .textbox-details:focus {
+    outline: none; 
+}
+.textbox-details-academics {
+    margin-bottom: 1rem;
+    width: 90%;
+    background-color: transparent;
+    border: none;
+    border-bottom: 0.1rem solid var(--accent-color);
+    padding: 0.5rem;
+    color: var(--text-color);
+}
+.textbox-details-academics::placeholder {
+    color: var(--text-color-2);
+    opacity: 1; 
+}
+.textbox-details-academics:focus {
     outline: none; 
 }
 /* for smaller devices (tabs esque) */

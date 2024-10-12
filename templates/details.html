@@ -25,9 +25,9 @@
                 <form method="POST" action="/details">
                     <div class="inputs-flex">
                         <input type="hidden" name="form_type" value="bio"> 
-                        <input name="academics-1" class="textbox-details" placeholder="eg- Btech 3rd year Computer engineering">
-                        <input name="academics-2" class="textbox-details" placeholder="eg- Executive - xyz committee">
-                        <input name="academics-3" class="textbox-details" placeholder="eg- Research intern under abc">
+                        <input name="academics-1" class="textbox-details-academics" placeholder="eg- Btech 3rd year Computer engineering">
+                        <input name="academics-2" class="textbox-details-academics" placeholder="eg- Executive - xyz committee">
+                        <input name="academics-3" class="textbox-details-academics" placeholder="eg- Research intern under abc">
                     </div>                    
                 </form>
                 <button type="submit" id="profile-edit-button">Save</button>
@@ -36,7 +36,7 @@
                 <div class="subheader-font" id="details-subheader">Bio</div>
                 <form method="POST" action="/details">
                     <input type="hidden" name="form_type" value="bio"> 
-                    <textarea placeholder="Write bio here, maybe set plkaceholder color in root " name="bio" id="bio" required></textarea>
+                    <textarea placeholder="Write bio here" name="bio" id="bio" required></textarea>
                 </form>
                 <button type="submit" id="profile-edit-button">Save</button>
             </div>
@@ -47,7 +47,7 @@
                 <div class="subheader-font" id="details-subheader">Skills</div>
                 <form method="POST" action="/details">
                     <input type="hidden" name="form_type" value="skills"> 
-                    <textarea class="text-area-2" name="skills" id="skills" required></textarea>
+                    <textarea placeholder="Write skills here" class="text-area-2" name="skills" id="skills" required></textarea>
                 </form>
                 <button type="submit" id="profile-edit-button">Save</button>
             </div>
@@ -55,7 +55,7 @@
                 <div class="subheader-font" id="details-subheader">Interests</div>
                 <form method="POST" action="/details">
                     <input type="hidden" name="form_type" value="interests"> 
-                    <textarea class="text-area-2" name="interests" id="interests" required></textarea>
+                    <textarea placeholder="Write interests here" class="text-area-2" name="interests" id="interests" required></textarea>
                 </form>
                 <button type="submit" id="profile-edit-button">Save</button>
             </div>
@@ -63,7 +63,7 @@
                 <div class="subheader-font" id="details-subheader">Soft Skills</div>
                 <form method="POST" action="/details">
                     <input type="hidden" name="form_type" value="softskills"> 
-                    <textarea class="text-area-2" name="softskills" id="softskills" required></textarea>
+                    <textarea placeholder="Write soft skills here" class="text-area-2" name="softskills" id="softskills" required></textarea>
                 </form>
                 <button type="submit" id="profile-edit-button">Save</button>
             </div>
@@ -73,7 +73,7 @@
                 <div class="subheader-font" id="details-subheader">Projects</div>
                 <form method="POST" action="/details">
                     <div class="inputs-flex">
-                        <input type="hidden" name="form_type" value="bio"> 
+                        <input type="hidden" name="form_type" value="projects"> 
                         <input name="academics-1" class="textbox-details" placeholder="eg- TicTacToe - React.js">
                         <input name="academics-2" class="textbox-details" placeholder="eg- To do list - Javascript, flask">
                         <input name="academics-3" class="textbox-details" placeholder="eg- Portfolio Website - Nextjs, Expressjs, fastapi">
@@ -85,7 +85,7 @@
                 <div class="subheader-font" id="details-subheader">Links</div>
                 <form method="POST" action="/details">
                     <div class="inputs-flex">
-                        <input type="hidden" name="form_type" value="bio"> 
+                        <input type="hidden" name="form_type" value="links"> 
                         <input name="academics-1" class="textbox-details" placeholder="eg- github">
                         <input name="academics-2" class="textbox-details" placeholder="eg- linkedin">
                         <input name="academics-3" class="textbox-details" placeholder="eg- instagram">
@@ -97,7 +97,7 @@
                 <div class="subheader-font" id="details-subheader">Achievements</div>
                 <form method="POST" action="/details">
                     <div class="inputs-flex">
-                        <input type="hidden" name="form_type" value="bio"> 
+                        <input type="hidden" name="form_type" value="achievements"> 
                         <input name="academics-1" class="textbox-details" placeholder="eg- 2nd in the college's hackathon">
                         <input name="academics-2" class="textbox-details" placeholder="eg- 3rd in IIT's debate competition">
                     </div>                    
