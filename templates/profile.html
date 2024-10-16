@@ -8,7 +8,7 @@
 <div class="main-profile-container">
     <div class="profile-left">
         <div class="top-part-left">
-            <img class="profile-pic" src="/static/black-white-logo.png">
+            <img class="profile-pic" src="{{ profile_picture if profile_picture else '/static/black-white-logo.png' }}" alt="Profile Picture">
             <a href="/details" class="edit-icon">
                 <img src="/static/pen-icon.png" alt="Edit" class="pen-icon">
             </a>

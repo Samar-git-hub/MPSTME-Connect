@@ -8,6 +8,7 @@ from werkzeug.security import check_password_hash, generate_password_hash
 import random
 import mysql.connector as sql
 from instance.hashing import hashing
+from werkzeug.utils import secure_filename
 
 load_dotenv()
 
@@ -29,6 +30,19 @@ app.config['MAIL_PASSWORD'] = os.getenv('MAIL_PASSWORD')
 app.config['MAIL_DEFAULT_SENDER'] = os.getenv('MAIL_USERNAME')
 
 mail = Mail(app)
+
+
+app.config['UPLOAD_FOLDER'] = 'instance/user_pics'
+
+ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
+
+def validfile(filename):
+    if '.' in filename:
+        extension = filename.rsplit('.')[1].lower()
+        # rsplit is the same as normal split, just splitting from the first right '.' instead of left
+        if extension in ALLOWED_EXTENSIONS:
+            return True
+    return False
 
 @app.route("/")
 def index():
@@ -164,17 +178,145 @@ def profile():
         if i.isalpha():
             last += i
     
+    c1.execute("SELECT id FROM user_auth WHERE email = %s", (session["user_id"],))
+    user_id = c1.fetchone()[0]
+    sessionid = user_id
+    
+    c1.execute("SELECT profile_pic FROM users WHERE user_id = %s", (sessionid,))
+    profile_picture_tuple = c1.fetchone()
+
+    if profile_picture_tuple:
+        profile_picture = profile_picture_tuple[0]
+    else:
+        profile_picture = None
     # have to do the number of endorsements and academic description logic from the database (make another table)
-    return render_template("profile.html", first=first.capitalize(), last=last.capitalize(), number = 5, academic = "wow")
+    return render_template("profile.html", profile_picture=profile_picture, first=first.capitalize(), last=last.capitalize(), number = 5, academic = "wow")
 
 @app.route("/details", methods=["GET", "POST"])
 @login_required
 def details():
     if request.method == 'POST':
+
+        if 'profile_picture' not in request.files:
+            return render_template("error.html", error="No File")        
+        
+        file = request.files['profile_picture']
+        if file.filename == '':
+            return render_template("error.html", error="No File Selected")
+        
         
         return redirect('/profile')
+    
     else:
-        return render_template("details.html")
+
+        c1.execute("SELECT id FROM user_auth WHERE email = %s", (session["user_id"],))
+        user_id = c1.fetchone()[0]
+        sessionid = user_id
+
+        # taking id from the user_auth table, which is there used as a foreign key to get the values in other tables as user_id
+
+        c1.execute("SELECT profile_pic, bio, skills, interests, softskills FROM users WHERE user_id = %s", (sessionid,))
+        user_data = c1.fetchone()
+
+        c1.execute("SELECT academic_detail_1, academic_detail_2, academic_detail_3 FROM user_academics WHERE user_id = %s", (sessionid,))
+        academic_details = c1.fetchone()  
+
+        c1.execute("SELECT project_1, project_2, project_3 FROM user_projects WHERE user_id = %s", (sessionid,))
+        projects = c1.fetchone() 
+
+        c1.execute("SELECT github, linkedin, instagram FROM user_links WHERE user_id = %s", (sessionid,))
+        links = c1.fetchone()
+
+        c1.execute("SELECT achievement_1, achievement_2, achievement_3 FROM user_achievements WHERE user_id = %s", (sessionid,))
+        achievements = c1.fetchone()
+
+        if user_data is None:
+
+             user_data_dict = {
+                'profile_pic': '/static/black-white-logo.png',
+                'bio': '',
+                'skills': '',
+                'interests': '',
+                'softskills': ''
+            }
+
+        else:
+
+            user_data_dict = {
+                'profile_pic': user_data[0],
+                'bio': user_data[1],
+                'skills': user_data[2],
+                'interests': user_data[3],
+                'softskills': user_data[4]
+            }
+        
+        if academic_details is None:
+
+            academic_details_dict = {
+                'detail_1': '',
+                'detail_2': '',
+                'detail_3': ''
+            }
+
+        else:
+
+            academic_details_dict = {
+                'detail_1': academic_details[0],
+                'detail_2': academic_details[1],
+                'detail_3': academic_details[2]
+            }
+        
+        if projects is None:
+
+            projects_dict = {
+                'project_1': '',
+                'project_2': '',
+                'project_3': ''
+            }
+
+        else:
+
+            projects_dict = {
+                'project_1': projects[0],
+                'project_2': projects[1],
+                'project_3': projects[2]
+            }
+
+        if links is None:
+
+            links_dict = {
+                'github': '',
+                'linkedin': '',
+                'instagram': ''
+            }
+
+        else:
+
+            links_dict = {
+                'github': links[0],
+                'linkedin': links[1],
+                'instagram': links[2]
+            }
+
+        if achievements is None:
+
+            achievements_dict = {
+                'achievement_1': '',
+                'achievement_2': '',
+                'achievement_3': ''
+            }
+
+        else:
+
+            achievements_dict = {
+                'achievement_1': achievements[0],
+                'achievement_2': achievements[1],
+                'achievement_3': achievements[2]
+            }
+
+
+        return render_template("details.html", user=user_data_dict, academics=academic_details_dict, projects=projects_dict,
+                                links=links_dict, achievements=achievements_dict)
 
 @app.route("/logout")
 @login_required

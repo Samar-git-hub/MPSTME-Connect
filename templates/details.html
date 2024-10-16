@@ -12,7 +12,7 @@
             <div class="upper-details">
                 <div class="edit-pic-details">
                     <div class="subheader-font" id="details-subheader">Profile Picture</div>
-                    <img class="profile-pic-details" src="/static/black-white-logo.png" alt="Profile Picture">
+                    <img class="profile-pic-details" src="{{ profile_picture if profile_picture else '/static/black-white-logo.png' }}" alt="Profile Picture">
                     <input type="file" id="file" name="profile_picture" accept="image/*" style="display: none;">
                     <div class="edit-icon-details">
                         <img src="/static/pen-icon.png" alt="Edit" class="pen-icon-details" id="pen-icon">                
@@ -21,53 +21,53 @@
                 <div class="input-details-box">
                     <div class="subheader-font" id="details-subheader">Academic Details</div>
                     <div class="inputs-flex-2">
-                        <input name="academics-1" class="textbox-details-academics" placeholder="eg- Btech 3rd year Computer engineering">
-                        <input name="academics-2" class="textbox-details-academics" placeholder="eg- Executive - xyz committee">
-                        <input name="academics-3" class="textbox-details-academics" placeholder="eg- Research intern under abc">
+                        <input name="academics-1" class="textbox-details-academics" placeholder="eg- Btech 3rd year Computer engineering" value="{{ academics['detail_1'] if academics['detail_1'] else '' }}">
+                        <input name="academics-2" class="textbox-details-academics" placeholder="eg- Executive - xyz committee" value="{{ academics['detail_2'] if academics['detail_2'] else '' }}">
+                        <input name="academics-3" class="textbox-details-academics" placeholder="eg- Research intern under abc" value="{{ academics['detail_3'] if academics['detail_3'] else '' }}">
                     </div>
                 </div>
                 <div class="text-area-box">
                     <div class="subheader-font" id="details-subheader">Bio</div>
-                    <textarea placeholder="Write bio here" name="bio" id="bio" required></textarea>
+                    <textarea placeholder="Write bio here" name="bio" id="bio">{{ user['bio'] if user['bio'] else '' }}</textarea>
                 </div>
             </div>
             <div class="middle-details">
                 <div class="text-area-box-2">
                     <div class="subheader-font" id="details-subheader">Skills</div>
-                    <textarea placeholder="Write skills here" class="text-area-2" name="skills" id="skills" required></textarea>
+                    <textarea placeholder="Write skills here" class="text-area-2" name="skills" id="skills">{{ user['skills'] if user['skills'] else '' }}</textarea>
                 </div>
                 <div class="text-area-box-2">
                     <div class="subheader-font" id="details-subheader">Interests</div>
-                    <textarea placeholder="Write interests here" class="text-area-2" name="interests" id="interests" required></textarea>
+                    <textarea placeholder="Write interests here" class="text-area-2" name="interests" id="interests">{{ user['interests'] if user['interests'] else '' }}</textarea>
                 </div>
                 <div class="text-area-box-2">
                     <div class="subheader-font" id="details-subheader">Soft Skills</div>
-                    <textarea placeholder="Write soft skills here" class="text-area-2" name="softskills" id="softskills" required></textarea>
+                    <textarea placeholder="Write soft skills here" class="text-area-2" name="softskills" id="softskills">{{ user['softskills'] if user['softskills'] else '' }}</textarea>
                 </div>
             </div>
             <div class="lower-details">
                 <div class="input-details-box-2">
                     <div class="subheader-font" id="details-subheader">Projects</div>
                     <div class="inputs-flex">
-                        <input name="projects-1" class="textbox-details" placeholder="eg- TicTacToe - React.js">
-                        <input name="projects-2" class="textbox-details" placeholder="eg- To do list - Javascript, flask">
-                        <input name="projects-3" class="textbox-details" placeholder="eg- Portfolio Website - Nextjs, Expressjs, fastapi">
+                        <input name="projects-1" class="textbox-details" placeholder="eg- TicTacToe - React.js" value="{{ projects['project_1'] if projects['project_1'] else '' }}">
+                        <input name="projects-2" class="textbox-details" placeholder="eg- To do list - Javascript, flask" value="{{ projects['project_2'] if projects['project_2'] else '' }}">
+                        <input name="projects-3" class="textbox-details" placeholder="eg- Portfolio Website - Nextjs, Expressjs, fastapi" value="{{ projects['project_3'] if projects['project_3'] else '' }}">
                     </div>
                 </div>
                 <div class="input-details-box-2">
                     <div class="subheader-font" id="details-subheader">Links</div>
                     <div class="inputs-flex">
-                        <input name="links-1" class="textbox-details" placeholder="eg- github">
-                        <input name="links-2" class="textbox-details" placeholder="eg- linkedin">
-                        <input name="links-3" class="textbox-details" placeholder="eg- instagram">
+                        <input name="links-1" class="textbox-details" placeholder="eg- github" value="{{ links['github'] if links['github'] else '' }}">
+                        <input name="links-2" class="textbox-details" placeholder="eg- linkedin" value="{{ links['linkedin'] if links['linkedin'] else '' }}">
+                        <input name="links-3" class="textbox-details" placeholder="eg- instagram" value="{{ links['instagram'] if links['instagram'] else '' }}">
                     </div>
                 </div>
                 <div class="input-details-box-2">
                     <div class="subheader-font" id="details-subheader">Achievements</div>
                     <div class="inputs-flex">
-                        <input name="achievements-1" class="textbox-details" placeholder="eg- 2nd in the college's hackathon">
-                        <input name="achievements-2" class="textbox-details" placeholder="eg- 3rd in IIT's debate competition">
-                        <input name="achievements-3" class="textbox-details" placeholder="eg- volunteered at xyz foundation">
+                        <input name="achievements-1" class="textbox-details" placeholder="eg- 2nd in the college's hackathon" value="{{ achievements['achievement_1'] if achievements['achievement_1'] else '' }}">
+                        <input name="achievements-2" class="textbox-details" placeholder="eg- 3rd in IIT's debate competition" value="{{ achievements['achievement_2'] if achievements['achievement_2'] else '' }}">
+                        <input name="achievements-3" class="textbox-details" placeholder="eg- volunteered at xyz foundation" value="{{ achievements['achievement_3'] if achievements['achievement_3'] else '' }}">
                     </div>
                 </div>
             </div>

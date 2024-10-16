@@ -36,3 +36,18 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     })
 })
+/*
+The element pen-icon (the image) acts like a button as when clicked, with the help of javascript.
+When clicked, the button then calls for the input element (with the file type and file name),
+Then fileInput.click() simulates a click on the input (button) opening up the users file system.
+For reference:
+This input is normally a button which the user can click (Choose file button), but we hide this from the user.
+*/
+document.addEventListener("DOMContentLoaded", function () {
+    const penIcon = document.getElementById('pen-icon');
+    const fileInput = document.getElementById('file');
+
+    penIcon.addEventListener('click', function() {
+        fileInput.click(); 
+    });
+});
