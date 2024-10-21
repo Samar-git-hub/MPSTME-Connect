@@ -11,6 +11,7 @@ from instance.hashing import hashing
 from werkzeug.utils import secure_filename
 import requests
 from supabase import create_client, Client
+import uuid
 
 load_dotenv()
 
@@ -202,11 +203,34 @@ def profile():
 @login_required
 def details():
     if request.method == 'POST':
+        c1.execute("SELECT id FROM user_auth WHERE email = %s", (session["user_id"],))
+        user_id = c1.fetchone()[0]
+        sessionid = user_id
 
-        return redirect("profile.html")
+        # Handle profile picture upload
+        if 'profile_pic' in request.files:
+            file = request.files['profile_pic']
+            if file and validfile(file.filename):
+                filename = secure_filename(file.filename)
+                unique_filename = f"{uuid.uuid4()}_{filename}"
+                
+                # Upload to Supabase
+                file_path = f"{BUCKET_NAME}/{unique_filename}"
+                supabase.storage.from_(BUCKET_NAME).upload(unique_filename, file.read())
+                
+                # Get public URL
+                file_url = supabase.storage.from_(BUCKET_NAME).get_public_url(unique_filename)
+                
+                # Save URL to MySQL database
+                c1.execute("UPDATE users SET profile_pic = %s WHERE user_id = %s", (file_url, sessionid))
+                conn.commit()
+
+        # Handle other form data (existing code)
+        # ...
+
+        return redirect("/profile")
     
     else:
-
         c1.execute("SELECT id FROM user_auth WHERE email = %s", (session["user_id"],))
         user_id = c1.fetchone()[0]
         sessionid = user_id
