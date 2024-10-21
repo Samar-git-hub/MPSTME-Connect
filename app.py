@@ -1,5 +1,5 @@
 import os
-from flask import Flask, redirect, render_template, request, session, flash
+from flask import Flask, redirect, render_template, request, session, flash, jsonify
 from flask_session import Session
 from flask_mail import Mail, Message
 from helper import login_required, verification_required, verify_required
@@ -9,6 +9,8 @@ import random
 import mysql.connector as sql
 from instance.hashing import hashing
 from werkzeug.utils import secure_filename
+import requests
+from supabase import create_client, Client
 
 load_dotenv()
 
@@ -32,9 +34,13 @@ app.config['MAIL_DEFAULT_SENDER'] = os.getenv('MAIL_USERNAME')
 mail = Mail(app)
 
 
-app.config['UPLOAD_FOLDER'] = 'instance/user_pics'
+SUPABASE_URL = os.getenv('SUPABASE_URL')
+SUPABASE_ANON_KEY = os.getenv('SUPABASE_ANON_KEY')
+supabase: Client = create_client(SUPABASE_URL, SUPABASE_ANON_KEY)
+BUCKET_NAME = 'profile_pics'
+MAX_FILE_SIZE = 5 * 1024 * 1024 # 5 MB
 
-ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
+ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg'}
 
 def validfile(filename):
     if '.' in filename:
@@ -197,15 +203,7 @@ def profile():
 def details():
     if request.method == 'POST':
 
-        if 'profile_picture' not in request.files:
-            return render_template("error.html", error="No File")        
-        
-        file = request.files['profile_picture']
-        if file.filename == '':
-            return render_template("error.html", error="No File Selected")
-        
-        
-        return redirect('/profile')
+        return redirect("profile.html")
     
     else:
 
@@ -213,22 +211,28 @@ def details():
         user_id = c1.fetchone()[0]
         sessionid = user_id
 
-        # taking id from the user_auth table, which is there used as a foreign key to get the values in other tables as user_id
-
+        # Fetch user data
         c1.execute("SELECT profile_pic, bio, skills, interests, softskills FROM users WHERE user_id = %s", (sessionid,))
         user_data = c1.fetchone()
+        c1.fetchall()  # Consume any remaining results
 
         c1.execute("SELECT academic_detail_1, academic_detail_2, academic_detail_3 FROM user_academics WHERE user_id = %s", (sessionid,))
-        academic_details = c1.fetchone()  
+        academic_details = c1.fetchone()
+        c1.fetchall()  # Consume any remaining results
 
         c1.execute("SELECT project_1, project_2, project_3 FROM user_projects WHERE user_id = %s", (sessionid,))
-        projects = c1.fetchone() 
+        projects = c1.fetchone()
+        c1.fetchall()  # Consume any remaining results
 
         c1.execute("SELECT github, linkedin, instagram FROM user_links WHERE user_id = %s", (sessionid,))
         links = c1.fetchone()
+        c1.fetchall()  # Consume any remaining results
 
         c1.execute("SELECT achievement_1, achievement_2, achievement_3 FROM user_achievements WHERE user_id = %s", (sessionid,))
         achievements = c1.fetchone()
+        c1.fetchall()  # Consume any remaining results
+
+        # Process the fetched data (your existing code here)
 
         if user_data is None:
 
