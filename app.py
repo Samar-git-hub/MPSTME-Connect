@@ -211,19 +211,29 @@ def details():
         if 'profile_pic' in request.files:
             file = request.files['profile_pic']
             if file and validfile(file.filename):
+                if file.content_length > MAX_FILE_SIZE:
+                    return render_template("error.html", error="File size exceeds the maximum limit of 5MB.")
+
                 filename = secure_filename(file.filename)
                 unique_filename = f"{uuid.uuid4()}_{filename}"
-                
                 # Upload to Supabase
-                file_path = f"{BUCKET_NAME}/{unique_filename}"
-                supabase.storage.from_(BUCKET_NAME).upload(unique_filename, file.read())
-                
-                # Get public URL
-                file_url = supabase.storage.from_(BUCKET_NAME).get_public_url(unique_filename)
-                
-                # Save URL to MySQL database
-                c1.execute("UPDATE users SET profile_pic = %s WHERE user_id = %s", (file_url, sessionid))
-                conn.commit()
+                try:
+                    supabase.storage.from_(BUCKET_NAME).upload(unique_filename, file.read())
+                    
+                    # Get public URL
+                    file_url = supabase.storage.from_(BUCKET_NAME).get_public_url(unique_filename)
+                    
+                    # Save URL to MySQL database
+                    c1.execute("""
+                        INSERT INTO users (user_id, profile_pic) 
+                        VALUES (%s, %s) 
+                        ON DUPLICATE KEY UPDATE profile_pic = VALUES(profile_pic)
+                    """, (sessionid, file_url))
+                    conn.commit()
+                    
+                except Exception as e:
+                    print(f"Error uploading file to Supabase: {str(e)}")
+                    return render_template("error.html", error="Failed to upload profile picture. Please try again.")
 
         # Handle other form data (existing code)
         # ...
