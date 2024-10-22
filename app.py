@@ -277,7 +277,8 @@ def details():
                         last += i
                         
                 filename = f"{first}_{last}_profilepic.{file.filename.rsplit('.',1)[1].lower()}" 
-                dbpath = f"/user-pics/{filename}" # path in the browser
+                dbpath = f"/user-pics/{filename}" 
+                # path in the browser, basically like a normal get request to display a favicon or a normal picture, I am making a url which can then have a get request
 
                 # this is an absolute path in the device (not in the database)
                 upload_folder = os.path.join(app.instance_path, 'user-pics')
@@ -412,7 +413,7 @@ def details():
         return render_template("details.html", user=user_data_dict, academics=academic_details_dict, projects=projects_dict,
                                 links=links_dict, achievements=achievements_dict)
 
-@app.route('/user-pics/<filename>')
+@app.route('/user-pics/<filename>') # crazy stuff, src in html is actually a get request end point
 def serve_image(filename):
     return send_from_directory(app.instance_path + '/user-pics', filename)
 
