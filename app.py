@@ -207,38 +207,67 @@ def details():
         user_id = c1.fetchone()[0]
         sessionid = user_id
 
-        # Handle profile picture upload
-        if 'profile_pic' in request.files:
-            file = request.files['profile_pic']
-            if file and validfile(file.filename):
-                if file.content_length > MAX_FILE_SIZE:
-                    return render_template("error.html", error="File size exceeds the maximum limit of 5MB.")
+        # Getting data from all fields, except the profile picture field, as will handle that separately
+        bio = request.form.get('bio')
+        skills = request.form.get('skills')
+        interests = request.form.get('interests')
+        softskills = request.form.get('softskills')
+        academic_detail_1 = request.form.get('academics-1')
+        academic_detail_2 = request.form.get('academics-2')
+        academic_detail_3 = request.form.get('academics-3')
+        project_1 = request.form.get('projects-1')
+        project_2 = request.form.get('projects-2')
+        project_3 = request.form.get('projects-3')
+        github = request.form.get('links-1')
+        linkedin = request.form.get('links-2')
+        instagram = request.form.get('links-3')
+        achievement_1 = request.form.get('achievements-1')
+        achievement_2 = request.form.get('achievements-2')
+        achievement_3 = request.form.get('achievements-3')
 
-                filename = secure_filename(file.filename)
-                unique_filename = f"{uuid.uuid4()}_{filename}"
-                # Upload to Supabase
-                try:
-                    supabase.storage.from_(BUCKET_NAME).upload(unique_filename, file.read())
-                    
-                    # Get public URL
-                    file_url = supabase.storage.from_(BUCKET_NAME).get_public_url(unique_filename)
-                    
-                    # Save URL to MySQL database
-                    c1.execute("""
-                        INSERT INTO users (user_id, profile_pic) 
-                        VALUES (%s, %s) 
-                        ON DUPLICATE KEY UPDATE profile_pic = VALUES(profile_pic)
-                    """, (sessionid, file_url))
-                    conn.commit()
-                    
-                except Exception as e:
-                    print(f"Error uploading file to Supabase: {str(e)}")
-                    return render_template("error.html", error="Failed to upload profile picture. Please try again.")
+        c1.execute("""
+            INSERT INTO users (user_id, bio, skills, interests, softskills)
+            VALUES (%s, %s, %s, %s, %s)
+            ON DUPLICATE KEY UPDATE
+                bio = VALUES(bio), skills = VALUES(skills), interests = VALUES(interests), softskills = VALUES(softskills)
+            """, (sessionid, bio, skills, interests, softskills))
 
-        # Handle other form data (existing code)
-        # ...
+        c1.execute("""
+            INSERT INTO user_academics (user_id, academic_detail_1, academic_detail_2, academic_detail_3)
+            VALUES (%s, %s, %s, %s)
+            ON DUPLICATE KEY UPDATE
+                academic_detail_1 = VALUES(academic_detail_1),
+                academic_detail_2 = VALUES(academic_detail_2),
+                academic_detail_3 = VALUES(academic_detail_3)
+            """, (sessionid, academic_detail_1, academic_detail_2, academic_detail_3))
 
-        return redirect("/profile")
+
+        c1.execute("""
+            INSERT INTO user_projects (user_id, project_1, project_2, project_3)
+            VALUES (%s, %s, %s, %s)
+            ON DUPLICATE KEY UPDATE
+                project_1 = VALUES(project_1), project_2 = VALUES(project_2), project_3 = VALUES(project_3)
+            """, (sessionid, project_1, project_2, project_3))
+
+
+        c1.execute("""
+            INSERT INTO user_links (user_id, github, linkedin, instagram)
+            VALUES (%s, %s, %s, %s)
+            ON DUPLICATE KEY UPDATE
+                github = VALUES(github), linkedin = VALUES(linkedin), instagram = VALUES(instagram)
+            """, (sessionid, github, linkedin, instagram))
+
+
+        c1.execute("""
+            INSERT INTO user_achievements (user_id, achievement_1, achievement_2, achievement_3)
+            VALUES (%s, %s, %s, %s)
+            ON DUPLICATE KEY UPDATE
+                achievement_1 = VALUES(achievement_1), achievement_2 = VALUES(achievement_2), achievement_3 = VALUES(achievement_3)
+            """, (sessionid, achievement_1, achievement_2, achievement_3))
+
+        conn.commit()
+
+        return redirect("/details")
     
     else:
         c1.execute("SELECT id FROM user_auth WHERE email = %s", (session["user_id"],))
