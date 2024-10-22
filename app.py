@@ -1,5 +1,5 @@
 import os
-from flask import Flask, redirect, render_template, request, session, flash, jsonify
+from flask import Flask, redirect, render_template, request, session, flash, jsonify, send_from_directory
 from flask_session import Session
 from flask_mail import Mail, Message
 from helper import login_required, verification_required, verify_required
@@ -10,8 +10,6 @@ import mysql.connector as sql
 from instance.hashing import hashing
 from werkzeug.utils import secure_filename
 import requests
-from supabase import create_client, Client
-import uuid
 
 load_dotenv()
 
@@ -33,13 +31,6 @@ app.config['MAIL_PASSWORD'] = os.getenv('MAIL_PASSWORD')
 app.config['MAIL_DEFAULT_SENDER'] = os.getenv('MAIL_USERNAME')
 
 mail = Mail(app)
-
-
-SUPABASE_URL = os.getenv('SUPABASE_URL')
-SUPABASE_ANON_KEY = os.getenv('SUPABASE_ANON_KEY')
-supabase: Client = create_client(SUPABASE_URL, SUPABASE_ANON_KEY)
-BUCKET_NAME = 'profile_pics'
-MAX_FILE_SIZE = 5 * 1024 * 1024 # 5 MB
 
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg'}
 
@@ -175,6 +166,7 @@ def signup():
 @app.route("/profile")
 @login_required
 def profile():
+    # splitting the email into 2 parts and capitalizing so that its displayed as a complete name in the profile template
     email = session["user_id"]
     username = email.split('@')[0]
     namelist = username.split(".")
@@ -197,13 +189,17 @@ def profile():
     else:
         profile_picture = None
     # have to do the number of endorsements and academic description logic from the database (make another table)
+    
     return render_template("profile.html", profile_picture=profile_picture, first=first.capitalize(), last=last.capitalize(), number = 5, academic = "wow")
+
+
 
 @app.route("/details", methods=["GET", "POST"])
 @login_required
 def details():
     if request.method == 'POST':
-        c1.execute("SELECT id FROM user_auth WHERE email = %s", (session["user_id"],))
+        c1.execute("SELECT id FROM user_auth WHERE email = %s", (session["user_id"],)) 
+        # session["user_id"] is the email used to identify the current user, session id is the id associated with that user in the database
         user_id = c1.fetchone()[0]
         sessionid = user_id
 
@@ -264,6 +260,37 @@ def details():
             ON DUPLICATE KEY UPDATE
                 achievement_1 = VALUES(achievement_1), achievement_2 = VALUES(achievement_2), achievement_3 = VALUES(achievement_3)
             """, (sessionid, achievement_1, achievement_2, achievement_3))
+
+        # profile picture part
+        if 'profile_picture' in request.files:
+            file = request.files['profile_picture']
+            if file and validfile(file.filename):
+
+                email = session["user_id"]
+                username = email.split('@')[0]
+                namelist = username.split(".")
+                first = namelist[0]
+                second = namelist[1]
+                last = ""
+                for i in second:
+                    if i.isalpha():
+                        last += i
+                        
+                filename = f"{first}_{last}_profilepic.{file.filename.rsplit('.',1)[1].lower()}" 
+                dbpath = f"/user-pics/{filename}" # path in the browser
+
+                # this is an absolute path in the device (not in the database)
+                upload_folder = os.path.join(app.instance_path, 'user-pics')
+                os.makedirs(upload_folder, exist_ok=True) # makes the upload folder if it doesnt already exist
+
+                file.save(os.path.join(upload_folder, filename)) # saves file to the directory, with a new path
+
+                c1.execute("""
+                    INSERT INTO users (user_id, profile_pic)
+                    VALUES (%s, %s)
+                    ON DUPLICATE KEY UPDATE
+                        profile_pic = VALUES(profile_pic)
+                """, (sessionid, dbpath))
 
         conn.commit()
 
@@ -385,6 +412,10 @@ def details():
         return render_template("details.html", user=user_data_dict, academics=academic_details_dict, projects=projects_dict,
                                 links=links_dict, achievements=achievements_dict)
 
+@app.route('/user-pics/<filename>')
+def serve_image(filename):
+    return send_from_directory(app.instance_path + '/user-pics', filename)
+
 @app.route("/logout")
 @login_required
 def logout():
@@ -393,3 +424,4 @@ def logout():
 
 if __name__ == "__main__":
     app.run(debug=True)
+

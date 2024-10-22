@@ -12,7 +12,7 @@
             <div class="upper-details">
                 <div class="edit-pic-details">
                     <div class="subheader-font" id="details-subheader">Profile Picture</div>
-                    <img class="profile-pic-details" src="{{ profile_picture if profile_picture else '/static/black-white-logo.png' }}" alt="Profile Picture">
+                    <img class="profile-pic-details" src="{{ user['profile_pic'] if user['profile_pic'] else '/static/black-white-logo.png' }}" alt="Profile Picture">
                     <input type="file" id="file" name="profile_picture" accept="image/jpeg, image/jpg, image/png" style="display: none;">
                     <div class="edit-icon-details">
                         <img src="/static/pen-icon.png" alt="Edit" class="pen-icon-details" id="pen-icon">                

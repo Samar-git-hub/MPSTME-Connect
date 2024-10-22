@@ -10,13 +10,13 @@
     --text-color-2: rgb(182, 182, 182);
 }
 [data-theme="light"] { /* can be toggled with light theme, thats why variables in the CSS */
-    --background-color: #f5d7d7;
+    --background-color: rgb(218, 241, 249);
     --text-color: #2F242C;
     --text-color-2: rgb(85, 85, 85);
     --primary-color: #A42CD6;
     --secondary-color: #f1b1b0;
     --accent-color: #502274;
-    --header-background: #C179B9;
+    --header-background: lightblue;
     --primary-rgba: rgba(164, 44, 214, 1); /* hazy buttons, same color as primary */
     --primary-rgba-opaque: rgba(164, 44, 214, 0.8);
 }
@@ -265,7 +265,6 @@ header {
 .profile-pic {
     width: 12rem; /* Set a fixed width */
     height: 12rem; 
-    height: auto;
     border-radius: 50%; 
     object-fit: cover;
     border: 0.1rem solid var(--accent-color);
