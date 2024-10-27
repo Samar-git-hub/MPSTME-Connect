@@ -361,9 +361,7 @@ header {
     margin: 2rem;
     margin-left: 0rem;
 }
-.top-part-middle {
-    width: 100%;
-}
+
 .profile-right {
     border: 0.1rem solid var(--accent-color);
     border-radius: 0.5rem;
@@ -379,9 +377,6 @@ header {
 .top-part-right {
     width: 100%;
     flex: 1;
-}
-.bottom-part-right {
-    height: 100%;
 }
 #profile-edit-button {
     background-color: var(--primary-color);

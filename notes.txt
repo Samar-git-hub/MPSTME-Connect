@@ -41,3 +41,6 @@ check about licenses and open source and then even deciding whether schemas shou
 
 limit to size of what user uploads in pic, and also the secure file thing, and also tell user to only upload jpeg, jpg or png
 report button with reason
+
+make sure the file uploaded is safe via werkzueg and also make sure users can only upload safe links, and further maybe 
+only intragram, github or linkedin, moslty just do these 3

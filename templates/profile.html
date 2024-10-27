@@ -8,48 +8,46 @@
 <div class="main-profile-container">
     <div class="profile-left">
         <div class="top-part-left">
-            <img class="profile-pic" src="{{ profile_picture if profile_picture else '/static/black-white-logo.png' }}" alt="Profile Picture">
+            <img class="profile-pic" src="{{ user['profile_pic'] if user['profile_pic'] else '/static/black-white-logo.png' }}" alt="Profile Picture">
             <a href="/details" class="edit-icon">
                 <img src="/static/pen-icon.png" alt="Edit" class="pen-icon">
             </a>
         </div>
         <div class="bottom-part-left">
             <div class="profile-name">{{ first }} {{ last }}</div> <!-- split the email-->
-            <div id="endorsements-number" class="profile-head">{{ number }}</div>
+            <div id="endorsements-number" class="profile-head">{{ user['endorsements'] if user['endorsements'] else '0' }}</div>
             <div id="endorsements" class="profile-subhead">endorsements</div> <!-- show number -->
             <div class="profile-head">Academic Details:</div>
             <div class="profile-subhead">
-                <li>Btech CE 2nd year</li>
-                <li>Tech executive munsoc</li>
-                <li>Tech executive data mavericks</li>
+                <li>{{ academics['detail_1'] if academics['detail_1'] else '' }}</li>
+                <li>{{ academics['detail_2'] if academics['detail_2'] else '' }}</li>
+                <li>{{ academics['detail_3'] if academics['detail_3'] else '' }}</li>
             </div>
         </div>
     </div>
     <div class="profile-middle">
-        <div class="top-part-middle">
+        <div>
             <div class="profile-head">Bio</div>
             <div class="profile-subhead">
-                Hey, I'm Samar Kamat! I am a computer engineering undergrad with the goal of creating value in everything I do.
-                Currently I'm working on learning web development, 
-                and I am a research intern in my university.
-                {{ bio }}
+                {{ user['bio'] if user['bio'] else '' }}
             </div>
         </div>
-        <div class="bottom-part-middle">
+        <div>
             <div class="profile-head">Skills</div>
             <div class="profile-subhead">
-                I'm good with html, css, javascript, python and flask
-                {{ skills }}
+                {{ user['skills'] if user['skills'] else '' }}
             </div> 
+        </div>
+        <div>
             <div class="profile-head">Interests</div>
             <div>
-                I'm interested in learning python and completing cs50 courses
-                {{ interests }}
+                {{ user['interests'] if user['interests'] else '' }}
             </div>
+        </div>
+        <div>
             <div class="profile-head">Soft Skills</div><!-- max select only 4-->
             <div class="profile-subhead">
-                I'm good at public speaking, and time management
-                {{ softskills }}
+                {{ user['softskills'] if user['softskills'] else '' }}
             </div>
         </div>
     </div>
@@ -57,23 +55,23 @@
         <div class="top-part-right">
             <div class="profile-head">Projects</div>
             <div class="profile-subhead">
-                <li>Tech blog website - A website for my blog (hosted on github pages)</li>
-                <li>Mpstme Connect - A platform to connect the students of mpstme based on skills and interests</li>
-                <li>A youtube homepage clone</li>
+                <li>{{ projects['project_1'] if projects['project_1'] else '' }}</li>
+                <li>{{ projects['project_2'] if projects['project_2'] else '' }}</li>
+                <li>{{ projects['project_3'] if projects['project_3'] else '' }}</li>
             </div>
         </div>
         <div class="bottom-part-right">
             <div class="profile-head">Links</div>
             <div class="profile-subhead">
-                <li>github</li>
-                <li>linkedin</li>
-                <li>instagram</li>
+                <li>{{ links['github'] if links['github'] else '' }}</li>
+                <li>{{ links['linkedin'] if links['linkedin'] else '' }}</li>
+                <li>{{ links['instagram'] if links['instagram'] else '' }}</li>
             </div>
             <div class="profile-head">Achievements</div>
             <div class="profile-subhead">
-                <li>Finished cs50</li>
-                <li>3rd in iitb mun representing France in the UNSC</li>
-                <li>volunteered at rnsiarg foundation spreading awareness about waste management to over 240 flats</li>
+                <li>{{ achievements['achievement_1'] if achievements['achievement_1'] else '' }}</li>
+                <li>{{ achievements['achievement_2'] if achievements['achievement_2'] else '' }}</li>
+                <li>{{ achievements['achievement_3'] if achievements['achievement_3'] else '' }}</li>
             </div>
             <button type="submit" id="profile-edit-button">
                 <a href="/details">
