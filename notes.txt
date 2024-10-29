@@ -45,4 +45,4 @@ report button with reason
 make sure the file uploaded is safe via werkzueg and also make sure users can only upload safe links, and further maybe 
 only intragram, github or linkedin, moslty just do these 3
 
-the filter in search could be search by name, interests, skills, soft skills with the default being search by name
+the filter in search could be search by name, interests, skills, soft skills with the default being search skills
