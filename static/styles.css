@@ -158,7 +158,6 @@ header {
     flex-direction: column;
 }
 .input-box {
-    display: block;
     height: 2.5rem;
     display: block;
     width: 100%;
@@ -361,7 +360,6 @@ header {
     margin: 2rem;
     margin-left: 0rem;
 }
-
 .profile-right {
     border: 0.1rem solid var(--accent-color);
     border-radius: 0.5rem;
@@ -489,6 +487,75 @@ header {
 .button-details {
     display: flex;
     justify-content: right;
+}
+.main-search {
+    padding-left: 25%;
+    padding-right: 25%;
+    margin-top: 8rem;
+}
+.search-header {
+    font-size: 2rem;
+}
+.search-subheader {
+    font-size: 1.5rem;
+}
+.search-inputbox {
+    background-color: transparent;
+    border: 0.1rem solid var(--accent-color);
+    width: 80%;
+    padding-left: 2rem;
+    padding-right: 5rem;
+    height: 4rem;
+    border-radius: 5rem;
+    color: var(--text-color);
+    box-sizing: border-box;
+    font-size: 1rem;
+}
+.search-inputbox:focus {
+    outline: none; 
+}
+.search-icon {
+    height: 1.5rem;
+    width: auto;
+    cursor: pointer;
+}
+.search-icon-container {
+    width: 5rem;
+    height: 4rem;
+    border-right: 0.1rem solid var(--accent-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5rem;
+    box-sizing: border-box; 
+    margin-left: -5rem;
+}
+.filter-icon {
+    height: 1.2rem;
+    width: auto;
+    cursor: pointer;
+}
+.filter-icon-container {
+    width: 5rem;
+    height: 4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5rem;
+    box-sizing: border-box; 
+}
+.overall-search-container {
+    display: flex;
+    align-items: center;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+.filter-text {
+    color: #808080;
+    font-size: 1rem;
+    margin-left: 0.8rem;
+    margin-right: 0.5rem;
+    cursor: pointer;
 }
 /* for smaller devices (tabs esque) */
 @media (max-width: 768px) {
