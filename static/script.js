@@ -76,3 +76,45 @@ document.addEventListener("DOMContentLoaded", () => {
         filterDropdown.classList.remove('show'); // Close the dropdown after selection
     });
 });
+
+document.addEventListener("DOMContentLoaded", ()=> {
+    const filterSelect = document.querySelector(".filter-select");
+    const searchInput = document.querySelector(".search-inputbox");
+
+    function searchProfiles() {
+        const filterValue = filterSelect.value; //current value of filter
+        const searchIterm = searchInput.value.toLowerCase();
+        const profilePreviews = document.querySelectorAll(".profile-preview");
+        // the querySelectorAll returns a NodeList is specifically a collection of DOM nodes (elements in the HTML document)
+
+        profilePreviews.forEach(profile => {
+            let targetText;
+            if (filterValue === 'name') {
+                targetText = profile.querySelector(".search-name").textContent; // if the filterValue is name, then search by the 
+                // javascript querySelector will return the element with ".search-name" class, eg - <div class="search-name">Jamal Kamlesh</div>
+                // and then the TextContent returns Jamal Kamlesh (the text inside the element) as raw text, not in a list or something.
+            } 
+            else {
+                targetText = profile.querySelector(".search-description").textContent;
+                // any other option, and we are searching in the description part instead of the name part
+            }
+
+            const finalText = targetText.toLowerCase(); // convert this text to lowercase
+            
+            if (!finalText.includes(searchIterm)) { // check if the text entered by the user has the text in the elements
+                profile.style.display = "none"; // if its not there, dont display the profile 
+            }
+            else {
+                profile.style.display = ""; // if its there display with default css styles
+            }
+        });
+    }
+
+    filterSelect.addEventListener("change", () => { // if the user chooses a different option,
+        // call the search function, as in the display should be changed
+        searchProfiles();
+    });
+    searchInput.addEventListener("input", () => { // do the same normally if the input is changed
+        searchProfiles();
+    });    
+});
