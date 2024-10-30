@@ -535,33 +535,15 @@ header {
     justify-content: center;
     border-radius: 5rem;
     box-sizing: border-box; 
-    margin-left: -4.5rem;
-}
-.filter-icon {
-    height: 1.2rem;
-    width: auto;
-    cursor: pointer;
-}
-.filter-icon-container {
-    width: 5rem;
-    height: 4rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 5rem;
-    box-sizing: border-box; 
+    right: 5rem;
+    position: absolute;
 }
 .overall-search-container {
     display: flex;
     align-items: center;
     margin-top: 2rem;
     margin-bottom: 5rem;
-}
-.filter-text {
-    color: #808080;
-    font-size: 1rem;
-    margin-left: 0.8rem;
-    margin-right: 0.5rem;
+    position: relative;
 }
 .profile-preview {
     width: 100%;
@@ -609,6 +591,59 @@ header {
 }
 .search-description {
     font-size: 1rem;
+}
+.filter-icon {
+    height: 1.2rem;
+    width: auto;
+    cursor: pointer;
+}
+.filter-text {
+    color: #808080;
+    font-size: 1rem;
+    margin-left: 0.8rem;
+    margin-right: 0.5rem;
+}
+.filter-icon-container {
+    width: 5rem;
+    height: 4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5rem;
+    box-sizing: border-box; 
+    position: relative; /* For using absolute for the child element, have to use relative on the parent container */
+}
+.filter-button { /* just for the filter text and icon */
+    display: flex;
+    align-items: center;
+    gap: 0.1rem;
+    background: none; /* just to remove the default styles I had set on buttons */
+    border: none;
+    cursor: pointer;
+}
+.filter-dropdown {
+    position: absolute; 
+    top: 100%;
+    display: none;  /* by default this shouldnt be shown */
+    z-index: 99; /* higher then everything except the header */
+}
+.filter-dropdown.show {
+    display: block;  
+}
+.filter-select {
+    border: 0.1rem solid var(--accent-color);
+    border-radius: 0.5rem;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    scrollbar-width: none; /* not displaying the scrollbar, because it is not necessary */
+}
+.filter-select option {
+    padding: 0.5rem 0.75rem;
+    cursor: pointer;
+    background-color: var(--background-color);
+    color: var(--text-color);
+}
+.filter-select option:hover {
+    background-color: var(--header-background);
 }
 /* for smaller devices (tabs esque) */
 @media (max-width: 768px) {

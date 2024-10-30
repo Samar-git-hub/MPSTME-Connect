@@ -19,8 +19,19 @@
                     <img src="/static/search-icon.png" class="search-icon">
                 </div>
                 <div class="filter-icon-container">
-                    <div class="filter-text">Filter</div>
-                    <img src="/static/filter-icon.png" class="filter-icon">
+                    <button class="filter-button">
+                        <div class="filter-text">Filter</div>
+                        <img src="/static/filter-icon.png" class="filter-icon">
+                    </button>
+                    <div class="filter-dropdown">
+                        <select class="filter-select" size="5">
+                            <option value="name">Name</option>
+                            <option value="bio">Bio</option>
+                            <option value="skills" selected>Skills</option>
+                            <option value="interests">Interests</option>
+                            <option value="soft-skills">Soft Skills</option>
+                        </select>
+                    </div>
                 </div>
             </div>
         </div>

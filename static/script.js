@@ -51,3 +51,21 @@ document.addEventListener("DOMContentLoaded", function () {
         fileInput.click(); 
     });
 });
+
+document.addEventListener("DOMContentLoaded", () => {
+    const filterButton = document.querySelector(".filter-button");
+    const filterDropdown = document.querySelector('.filter-dropdown');
+    const filterSelect = document.querySelector(".filter-select");
+
+    filterButton.addEventListener("click", ()=> { 
+        filterDropdown.classList.toggle('show'); // if there is a click on the button, 
+        // if the class is not there, its added, and its its there, it is removed
+    });
+    // the below code make sures that the same as the remove show class happens, but when the user clicks anywhere else on the page
+    document.addEventListener('click', function(e) {
+        if (!filterButton.contains(e.target) && !filterDropdown.contains(e.target)) { /* the code checks if this clicked element 
+            (e.target) is outside both the filterButton and filterDropdown */
+            filterDropdown.classList.remove('show');
+        }
+    });
+});
