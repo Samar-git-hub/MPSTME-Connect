@@ -56,6 +56,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const filterButton = document.querySelector(".filter-button");
     const filterDropdown = document.querySelector('.filter-dropdown');
     const filterSelect = document.querySelector(".filter-select");
+    const filterText = document.querySelector(".filter-text"); 
 
     filterButton.addEventListener("click", ()=> { 
         filterDropdown.classList.toggle('show'); // if there is a click on the button, 
@@ -67,5 +68,11 @@ document.addEventListener("DOMContentLoaded", () => {
             (e.target) is outside both the filterButton and filterDropdown */
             filterDropdown.classList.remove('show');
         }
+    });
+
+    filterSelect.addEventListener("change", (e) => {
+        filterText.textContent = e.target.value.charAt(0).toUpperCase() + e.target.value.slice(1); 
+        // Capitalize the first letter of the value in the option selected eg- value="interests" becomes I+nterest = Interest
+        filterDropdown.classList.remove('show'); // Close the dropdown after selection
     });
 });

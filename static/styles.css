@@ -555,14 +555,12 @@ header {
     width: 12rem;
     height: 12rem;
     padding: 1rem;
-    border-radius: 6rem;
     box-sizing: border-box; 
 }
 .right-profile-preview {
     flex: 1;
     height: 12rem;
     padding: 1rem;
-    border-radius: 6rem;
     box-sizing: border-box; 
 }
 .profile-preview-pic-container {
@@ -602,6 +600,7 @@ header {
     font-size: 1rem;
     margin-left: 0.8rem;
     margin-right: 0.5rem;
+    width: 3rem;
 }
 .filter-icon-container {
     width: 5rem;
