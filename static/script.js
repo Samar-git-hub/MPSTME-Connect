@@ -80,16 +80,17 @@ document.addEventListener("DOMContentLoaded", () => {
 document.addEventListener("DOMContentLoaded", ()=> {
     const filterSelect = document.querySelector(".filter-select");
     const searchInput = document.querySelector(".search-inputbox");
+    const filterForm = filterSelect.closest('form');
 
     function searchProfiles() {
         const filterValue = filterSelect.value; //current value of filter
-        const searchIterm = searchInput.value.toLowerCase();
+        const searchItem = searchInput.value.toLowerCase();
         const profilePreviews = document.querySelectorAll(".profile-preview");
         // the querySelectorAll returns a NodeList is specifically a collection of DOM nodes (elements in the HTML document)
 
         profilePreviews.forEach(profile => {
             let targetText;
-            if (filterValue === 'name') {
+            if (filterValue === 'Name') {
                 targetText = profile.querySelector(".search-name").textContent; // if the filterValue is name, then search by the 
                 // javascript querySelector will return the element with ".search-name" class, eg - <div class="search-name">Jamal Kamlesh</div>
                 // and then the TextContent returns Jamal Kamlesh (the text inside the element) as raw text, not in a list or something.
@@ -101,7 +102,7 @@ document.addEventListener("DOMContentLoaded", ()=> {
 
             const finalText = targetText.toLowerCase(); // convert this text to lowercase
             
-            if (!finalText.includes(searchIterm)) { // check if the text entered by the user has the text in the elements
+            if (!finalText.includes(searchItem)) { // check if the text entered by the user has the text in the elements
                 profile.style.display = "none"; // if its not there, dont display the profile 
             }
             else {
@@ -113,6 +114,7 @@ document.addEventListener("DOMContentLoaded", ()=> {
     filterSelect.addEventListener("change", () => { // if the user chooses a different option,
         // call the search function, as in the display should be changed
         searchProfiles();
+        filterForm.submit();
     });
     searchInput.addEventListener("input", () => { // do the same normally if the input is changed
         searchProfiles();

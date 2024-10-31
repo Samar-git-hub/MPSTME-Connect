@@ -46,3 +46,5 @@ make sure the file uploaded is safe via werkzueg and also make sure users can on
 only intragram, github or linkedin, moslty just do these 3
 
 the filter in search could be search by name, interests, skills, soft skills with the default being search skills
+
+work on the backend, that would involve setting the default search and template to skills, and te=hen having an if else for the rest

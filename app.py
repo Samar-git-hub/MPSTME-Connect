@@ -513,7 +513,65 @@ def details():
 @login_required
 def search():
     
-    return render_template('search.html')
+    options = ['Name', 'Bio', 'Skills', 'Interest', 'Soft-skills']
+
+    selected_option = request.args.get('filter', 'Skills')
+
+    c1.execute("""
+        SELECT 
+            ua.email, 
+            u.profile_pic, 
+            u.bio, 
+            u.skills, 
+            u.interests, 
+            u.softskills 
+        FROM user_auth ua
+        JOIN users u ON ua.id = u.user_id
+    """)
+    users_data = c1.fetchall()
+    # users_data has a list of tuples - [ ("user1.lastname2@nmims.in", "/user-pics/user1_lastname2_profilepic.png",....) (..., ...) ]
+
+    users_list = []
+    display_option = selected_option
+
+    for user in users_data: # for each user in the list returned from the database
+        # Split user email to create a name
+        email = user[0]
+        namelist = email.split('@')[0].split('.')
+        
+        first = namelist[0].capitalize()
+        second = namelist[1]
+        last = ""
+        for i in second:
+            if i.isalpha():
+                last += i
+
+        last = last.capitalize()
+
+        description = ''
+        if selected_option == 'Name': # if its by name, still display bio, just enable search by name
+            display_option = 'Bio'
+            description = user[2] or ''
+        elif selected_option == 'Bio':
+            description = user[2] or ''
+        elif selected_option == 'Skills':
+            description = user[3] or ''
+        elif selected_option == 'Interest':
+            description = user[4] or ''
+        elif selected_option == 'Soft-skills':
+            display_option = 'Soft Skills'
+            description = user[5] or ''
+        
+        user_dict = {
+            'first': first,
+            'last': last,
+            'profile_pic': user[1] or '/static/black-white-logo.png', 
+            'option': display_option,
+            'description': description
+        }
+        users_list.append(user_dict)
+
+    return render_template('search.html', options = options, users = users_list)
 
 @app.route('/user-pics/<filename>') # crazy stuff, src in html is actually a get request end point
 def serve_image(filename):
