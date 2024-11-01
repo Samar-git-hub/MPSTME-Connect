@@ -27,8 +27,12 @@
                         <form method="get" action="/search">
                             <select name="filter" id="filter" class="filter-select" size="5">
                                 {% for option in options %} <!-- options is a list -->
-                                    <option class="filter-option" value="{{ option }}">{{ option }}</option>
-                                {% endfor %}
+                                    <option class="filter-option" value="{{ option }}" {% if option == selected_option %}selected{% endif %}>{{ option }}</option>
+                                {% endfor %} <!-- The above line is the most important
+                                especially this part: {% if option == selected_option %}selected{% endif %}>{{ option }}
+                                This ensures that the choice remains throughout reloads. This ensures that whenever the choice is changed and the 
+                                form is reloaded, the filterValue in javascript doesnt get "" (due to no selection), but the instead, it gets the
+                                previous selection: 'Name', enabling the search to work properly for the name search-->
                             </select>
                         </form>
                     </div>

@@ -571,7 +571,7 @@ def search():
         }
         users_list.append(user_dict)
 
-    return render_template('search.html', options = options, users = users_list)
+    return render_template('search.html', options = options, users = users_list, selected_option=selected_option)
 
 @app.route('/user-pics/<filename>') # crazy stuff, src in html is actually a get request end point
 def serve_image(filename):

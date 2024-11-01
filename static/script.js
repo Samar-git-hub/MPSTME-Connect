@@ -90,6 +90,7 @@ document.addEventListener("DOMContentLoaded", ()=> {
 
         profilePreviews.forEach(profile => {
             let targetText;
+            console.log("Filter value: ", filterValue);
             if (filterValue === 'Name') {
                 targetText = profile.querySelector(".search-name").textContent; // if the filterValue is name, then search by the 
                 // javascript querySelector will return the element with ".search-name" class, eg - <div class="search-name">Jamal Kamlesh</div>
