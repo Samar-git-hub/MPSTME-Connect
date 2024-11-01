@@ -513,7 +513,7 @@ def details():
 @login_required
 def search():
     
-    options = ['Name', 'Bio', 'Skills', 'Interest', 'Soft-skills']
+    options = ['Name', 'Bio', 'Skills', 'Interests', 'Soft-skills']
 
     selected_option = request.args.get('filter', 'Skills')
 
@@ -556,7 +556,7 @@ def search():
             description = user[2] or ''
         elif selected_option == 'Skills':
             description = user[3] or ''
-        elif selected_option == 'Interest':
+        elif selected_option == 'Interests':
             description = user[4] or ''
         elif selected_option == 'Soft-skills':
             display_option = 'Soft Skills'
