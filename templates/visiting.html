@@ -1,0 +1,81 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Visiting
+{% endblock %}
+
+{% block body %}
+<div class="main-profile-container">
+    <div class="profile-left">
+        <div class="top-part-left">
+            <img class="profile-pic" src="{{ user['profile_pic'] if user['profile_pic'] else '/static/black-white-logo.png' }}" alt="Profile Picture">
+        </div>
+        <div class="bottom-part-left">
+            <div class="profile-name">{{ first }} {{ last }}</div> <!-- split the email-->
+            <div id="endorsements-number" class="profile-head">{{ user['endorsements'] if user['endorsements'] else '0' }}</div>
+            <div id="endorsements" class="profile-subhead">endorsements</div> <!-- show number -->
+            <div class="profile-head">Academic Details:</div>
+            <div class="profile-subhead">
+                <li>{{ academics['detail_1'] if academics['detail_1'] else '' }}</li>
+                <li>{{ academics['detail_2'] if academics['detail_2'] else '' }}</li>
+                <li>{{ academics['detail_3'] if academics['detail_3'] else '' }}</li>
+            </div>
+        </div>
+    </div>
+    <div class="profile-middle">
+        <div>
+            <div class="profile-head">Bio</div>
+            <div class="profile-subhead">
+                {{ user['bio'] if user['bio'] else '' }}
+            </div>
+        </div>
+        <div>
+            <div class="profile-head">Skills</div>
+            <div class="profile-subhead">
+                {{ user['skills'] if user['skills'] else '' }}
+            </div> 
+        </div>
+        <div>
+            <div class="profile-head">Interests</div>
+            <div>
+                {{ user['interests'] if user['interests'] else '' }}
+            </div>
+        </div>
+        <div>
+            <div class="profile-head">Soft Skills</div><!-- max select only 4-->
+            <div class="profile-subhead">
+                {{ user['softskills'] if user['softskills'] else '' }}
+            </div>
+        </div>
+    </div>
+    <div class="profile-right">
+        <div class="top-part-right">
+            <div class="profile-head">Projects</div>
+            <div class="profile-subhead">
+                <li>{{ projects['project_1'] if projects['project_1'] else '' }}</li>
+                <li>{{ projects['project_2'] if projects['project_2'] else '' }}</li>
+                <li>{{ projects['project_3'] if projects['project_3'] else '' }}</li>
+            </div>
+        </div>
+        <div class="bottom-part-right">
+            <div class="profile-head">Links</div>
+            <div class="profile-subhead">
+                <li>{{ links['github'] if links['github'] else '' }}</li>
+                <li>{{ links['linkedin'] if links['linkedin'] else '' }}</li>
+                <li>{{ links['instagram'] if links['instagram'] else '' }}</li>
+            </div>
+            <div class="profile-head">Achievements</div>
+            <div class="profile-subhead">
+                <li>{{ achievements['achievement_1'] if achievements['achievement_1'] else '' }}</li>
+                <li>{{ achievements['achievement_2'] if achievements['achievement_2'] else '' }}</li>
+                <li>{{ achievements['achievement_3'] if achievements['achievement_3'] else '' }}</li>
+            </div>
+            <button type="submit" id="profile-edit-button">
+                <a href="/details">
+                    Follow
+                </a>
+            </button>
+        </div>
+    </div>
+</div>
+{% endblock %}

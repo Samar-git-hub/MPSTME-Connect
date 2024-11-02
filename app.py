@@ -524,7 +524,8 @@ def search():
             u.bio, 
             u.skills, 
             u.interests, 
-            u.softskills 
+            u.softskills,
+            ua.id 
         FROM user_auth ua
         JOIN users u ON ua.id = u.user_id
     """)
@@ -563,6 +564,7 @@ def search():
             description = user[5] or ''
         
         user_dict = {
+            'id': user[6],
             'first': first,
             'last': last,
             'profile_pic': user[1] or '/static/black-white-logo.png', 
@@ -572,6 +574,129 @@ def search():
         users_list.append(user_dict)
 
     return render_template('search.html', options = options, users = users_list, selected_option=selected_option)
+
+@app.route("/visiting/<int:user_id>")
+@login_required
+def visiting(user_id):
+    c1.execute("SELECT email FROM user_auth WHERE id = (%s)", (user_id,))
+    email = c1.fetchone()[0]
+    # splitting the email into 2 parts and capitalizing so that its displayed as a complete name in the profile template
+    username = email.split('@')[0]
+    namelist = username.split(".")
+    first = namelist[0]
+    second = namelist[1]
+    last = ""
+    for i in second:
+        if i.isalpha():
+            last += i
+
+    c1.execute("SELECT profile_pic, bio, skills, interests, softskills, endorsements FROM users WHERE user_id = %s", (user_id,))
+    user_data = c1.fetchone()
+    c1.fetchall()  # Consume any remaining results
+
+    c1.execute("SELECT academic_detail_1, academic_detail_2, academic_detail_3 FROM user_academics WHERE user_id = %s", (user_id,))
+    academic_details = c1.fetchone()
+    c1.fetchall()  # Consume any remaining results
+
+    c1.execute("SELECT project_1, project_2, project_3 FROM user_projects WHERE user_id = %s", (user_id,))
+    projects = c1.fetchone()
+    c1.fetchall()  # Consume any remaining results
+
+    c1.execute("SELECT github, linkedin, instagram FROM user_links WHERE user_id = %s", (user_id,))
+    links = c1.fetchone()
+    c1.fetchall()  # Consume any remaining results
+
+    c1.execute("SELECT achievement_1, achievement_2, achievement_3 FROM user_achievements WHERE user_id = %s", (user_id,))
+    achievements = c1.fetchone()
+    c1.fetchall()  # Consume any remaining results
+
+    if user_data is None:
+
+            user_data_dict = {
+            'profile_pic': '/static/black-white-logo.png',
+            'bio': '',
+            'skills': '',
+            'interests': '',
+            'softskills': '',
+            'endorsements': '0'
+        }
+
+    else:
+
+        user_data_dict = {
+            'profile_pic': user_data[0],
+            'bio': user_data[1],
+            'skills': user_data[2],
+            'interests': user_data[3],
+            'softskills': user_data[4],
+            'endorsements': user_data[5]
+        }
+    
+    if academic_details is None:
+
+        academic_details_dict = {
+            'detail_1': '',
+            'detail_2': '',
+            'detail_3': ''
+        }
+
+    else:
+
+        academic_details_dict = {
+            'detail_1': academic_details[0],
+            'detail_2': academic_details[1],
+            'detail_3': academic_details[2]
+        }
+    
+    if projects is None:
+
+        projects_dict = {
+            'project_1': '',
+            'project_2': '',
+            'project_3': ''
+        }
+
+    else:
+
+        projects_dict = {
+            'project_1': projects[0],
+            'project_2': projects[1],
+            'project_3': projects[2]
+        }
+
+    if links is None:
+
+        links_dict = {
+            'github': '',
+            'linkedin': '',
+            'instagram': ''
+        }
+
+    else:
+
+        links_dict = {
+            'github': links[0],
+            'linkedin': links[1],
+            'instagram': links[2]
+        }
+
+    if achievements is None:
+
+        achievements_dict = {
+            'achievement_1': '',
+            'achievement_2': '',
+            'achievement_3': ''
+        }
+
+    else:
+
+        achievements_dict = {
+            'achievement_1': achievements[0],
+            'achievement_2': achievements[1],
+            'achievement_3': achievements[2]
+        }
+
+    return render_template("visiting.html", first = first.capitalize(), last = last.capitalize(), user=user_data_dict, academics=academic_details_dict, projects=projects_dict, links=links_dict, achievements=achievements_dict)
 
 @app.route('/user-pics/<filename>') # crazy stuff, src in html is actually a get request end point
 def serve_image(filename):

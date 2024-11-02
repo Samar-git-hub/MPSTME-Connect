@@ -43,15 +43,19 @@
             <div class="middle-part-search">
                 <div class="profile-preview">
                     <div class="left-profile-preview">
-                        <div class="profile-preview-pic-container">
-                            <img src="{{ user.profile_pic or '/static/black-white-logo.png' }}" class="profile-preview-pic">
-                        </div>
+                        <a href="/visiting/{{ user.id }}">
+                            <div class="profile-preview-pic-container">
+                                <img src="{{ user.profile_pic or '/static/black-white-logo.png' }}" class="profile-preview-pic">
+                            </div>
+                        </a>
                     </div>
                     <div class="right-profile-preview">
-                        <div class="search-name">
-                            <!-- if by skills, description by skills, if by interests, interests and so on-->
-                            {{ user.first }} {{ user.last }}
-                        </div>
+                        <a href="/visiting/{{ user.id }}">
+                            <div class="search-name">
+                                <!-- if by skills, description by skills, if by interests, interests and so on-->
+                                {{ user.first }} {{ user.last }}
+                            </div>
+                        </a>
                         <!-- if by skills, description by skills, if by interests, interests and so on-->
                         <div class="search-head">
                             {{ user.option }}
