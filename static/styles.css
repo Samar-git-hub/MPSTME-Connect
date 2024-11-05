@@ -644,6 +644,63 @@ header {
 .filter-select option:hover {
     background-color: var(--header-background);
 }
+.main-events {
+    margin-top: 8rem;
+    padding-left: 10%;
+    padding-right: 10%;
+}
+.middle-part-events {
+    display: flex;
+    flex-direction: column;
+    margin-top: 5rem;
+}
+.event-name {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+}
+.event-author {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+}
+.all-events-container {
+    width: 100%;
+    display: flex;
+    gap: 3rem;
+    flex-direction: row;
+}
+.events-container {
+    width: 33.3%;
+    border: 0.1rem solid var(--accent-color);
+    border-radius: 0.5rem;
+    padding: 0.5rem 1rem;
+}
+.event-poster {
+    margin-top: 1rem;
+    height: 20rem;
+    align-items: center;
+    justify-content: center;
+}
+.event-poster-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.event-days-left {
+    font-size: 1rem;
+    margin-top: 0.5rem;
+}
+.event-location {
+    font-size: 1rem;
+    margin-top: 0.5rem;
+}
+.event-link {
+    font-size: 1rem;
+    margin-top: 0.5rem;
+}
 /* for smaller devices (tabs esque) */
 @media (max-width: 768px) {
     :root {

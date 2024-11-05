@@ -52,3 +52,13 @@ work on the backend, that would involve setting the default search and template 
 Check out railway for hosting the project
 
 ability for users to handle their data and account, as in delete their account, change password, or remove profile pic
+
+if a follow feature, make sure you cant follow yourself
+
+check the error handling with the error html for everything that might have been overlooked
+
+dashboard for me to check how many users i have
+
+could have a just happened and upcoming events like the ufc website
+
+definitely need the ai search feature before making this public

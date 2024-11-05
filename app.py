@@ -698,6 +698,13 @@ def visiting(user_id):
 
     return render_template("visiting.html", first = first.capitalize(), last = last.capitalize(), user=user_data_dict, academics=academic_details_dict, projects=projects_dict, links=links_dict, achievements=achievements_dict)
 
+
+@app.route('/events')
+@login_required
+def events():
+    return render_template("events.html")
+
+
 @app.route('/user-pics/<filename>') # crazy stuff, src in html is actually a get request end point
 def serve_image(filename):
     return send_from_directory(app.instance_path + '/user-pics', filename)
