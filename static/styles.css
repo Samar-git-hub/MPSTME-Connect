@@ -722,6 +722,7 @@ header {
     border: none;
     padding: 0.5rem;
     margin-top: 1rem;
+    margin-bottom: 1rem;
     cursor: pointer;
     border-radius: 0.5rem;
     width: 9rem;
