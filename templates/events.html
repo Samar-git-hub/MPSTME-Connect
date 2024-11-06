@@ -96,27 +96,25 @@
                     Be careful though, you can only request to create an event once in every 5 minutes!
                 </div>
             </div>
-            <div class="events-request-container">
+            <form class="events-request-container" action="/events" method="POST">
                 <div class="events-request-info">
-                    <input class="events-input-box" type="text" placeholder="Name">
-                    <input class="events-input-box" type="email" placeholder="University Email">
+                    <input class="events-input-box" type="text" name="name" placeholder="Name">
+                    <input class="events-input-box" type="email" name="university_email" placeholder="University Email">
                 </div>
                 <div class="events-request-message">
-                    <textarea class="events-textarea" placeholder="Enter a message, giving a description of the event"></textarea>
+                    <textarea class="events-textarea" name="description" placeholder="Enter a message, giving a description of the event"></textarea>
                 </div>
                 <div class="events-request-info">
-                    <input class="events-input-box" type="text" placeholder="Enter the organizer's name">
-                    <input class="events-input-box" type="text" placeholder="Website link (if any)">
+                    <input class="events-input-box" type="text" name="organizer_name" placeholder="Enter the organizer's name">
+                    <input class="events-input-box" type="text" name="website_link" placeholder="Website link (if any)">
                 </div>
                 <div class="events-request-date">
-                    Date of the event:
-                    <input class="events-date-selector" type="date">
-                    <input class="location-events-input-box" type="text" placeholder="Location of the event">
+                    <label for="event_date">Date of the event:</label>
+                    <input class="events-date-selector" type="date" name="event_date">
+                    <input class="location-events-input-box" type="text" name="location" placeholder="Location of the event">
                 </div>
-                <button id="events-submit-button">
-                    Request approval
-                </button>
-            </div>
+                <button type="submit" id="events-submit-button">Request approval</button>
+            </form>
         </div>
     </div>
 {% endblock %}

@@ -9,7 +9,7 @@ import random
 import mysql.connector as sql
 from instance.hashing import hashing
 from werkzeug.utils import secure_filename
-import requests
+from datetime import datetime, timedelta
 
 load_dotenv()
 
@@ -699,10 +699,71 @@ def visiting(user_id):
     return render_template("visiting.html", first = first.capitalize(), last = last.capitalize(), user=user_data_dict, academics=academic_details_dict, projects=projects_dict, links=links_dict, achievements=achievements_dict)
 
 
-@app.route('/events')
+@app.route('/events', methods=["GET", "POST"])
 @login_required
 def events():
-    return render_template("events.html")
+
+    if request.method == 'POST':
+
+        last_submission = session.get('last_submission_time')
+
+        if last_submission: # if there is a last submission, check, if not then skip this and allow a post request
+            last_submission_time = datetime.fromisoformat(last_submission) # convert back from isoformat into regular datetime format
+
+            time_since_last_submission = datetime.now() - last_submission_time 
+
+            if time_since_last_submission < timedelta(minutes=5): 
+                # checks if the current time is less than 5 mins, if it is, then throw an error 
+                time_remaining = 5 - time_since_last_submission.seconds // 60
+                return render_template("error.html", error=f"Please wait {time_remaining} more minutes before submitting again.")
+        
+        name = request.form.get("name")
+        if not name:
+            return render_template("error.html", error="Please enter your mail")
+        email = request.form.get('university_email')
+        if not email or not email.endswith("@nmims.in"): 
+            return render_template("error.html", error="Provide a valid university email")
+        description = request.form.get('description')
+        if not description: 
+            return render_template("error.html", error="Provide a description for the event")
+        organizer = request.form.get('organizer_name')
+        if not organizer: 
+            return render_template("error.html", error="Provide a valid university email")
+        link = request.form.get('website_link')
+        if not link:
+            return render_template("error.html", error="Provide a website link for the event, if none enter N/A")
+        location = request.form.get('location')
+        if not location:
+            return render_template("error.html", error="Provide an event location, if the location is not decided yet enter N/A")
+        date = request.form.get('event_date')
+        if not date:
+            return render_template("error.html", error="Provide the date of the event")
+        mymail = os.getenv('MAIL_USERNAME')
+        msg = Message('MPSTME Connect: New Event!', recipients=[mymail])
+        msg.body = f"""
+        name: {name},
+        
+        email: {email}
+
+        description: {description}
+
+        organizer: {organizer}
+        
+        link: {link}
+
+        location: {location}
+
+        date: {date}
+
+        """
+        mail.send(msg)
+
+        session['last_submission_time'] = datetime.now().isoformat()
+
+        return redirect("/events")
+    
+    else:
+        return render_template("events.html")
 
 
 @app.route('/user-pics/<filename>') # crazy stuff, src in html is actually a get request end point

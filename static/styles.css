@@ -713,8 +713,8 @@ header {
     font-weight: 500; 
 }
 .events-subheader {
-    font-size: 1rem;
-    font-weight: 250; 
+    font-size: 0.9rem;
+    font-weight: 350; 
 }
 #events-submit-button {
     background-color: var(--primary-color);
