@@ -181,7 +181,7 @@ def profile():
     user_id = c1.fetchone()[0]
     sessionid = user_id
     
-    c1.execute("SELECT profile_pic, bio, skills, interests, softskills, endorsements FROM users WHERE user_id = %s", (sessionid,))
+    c1.execute("SELECT profile_pic, bio, skills, interests, softskills, followers, following FROM users WHERE user_id = %s", (sessionid,))
     user_data = c1.fetchone()
     c1.fetchall()  # Consume any remaining results
 
@@ -209,7 +209,8 @@ def profile():
             'skills': '',
             'interests': '',
             'softskills': '',
-            'endorsements': '0'
+            'followers': '0',
+            'following': '0'
         }
 
     else:
@@ -220,7 +221,8 @@ def profile():
             'skills': user_data[2],
             'interests': user_data[3],
             'softskills': user_data[4],
-            'endorsements': user_data[5]
+            'followers': user_data[5],
+            'following': user_data[6]
         }
     
     if academic_details is None:
@@ -575,128 +577,171 @@ def search():
 
     return render_template('search.html', options = options, users = users_list, selected_option=selected_option)
 
-@app.route("/visiting/<int:user_id>")
+@app.route("/visiting/<int:user_id>", methods=["GET", "POST"])
 @login_required
 def visiting(user_id):
     c1.execute("SELECT email FROM user_auth WHERE id = (%s)", (user_id,))
     email = c1.fetchone()[0]
-    # splitting the email into 2 parts and capitalizing so that its displayed as a complete name in the profile template
-    username = email.split('@')[0]
-    namelist = username.split(".")
-    first = namelist[0]
-    second = namelist[1]
-    last = ""
-    for i in second:
-        if i.isalpha():
-            last += i
+    c1.fetchall()
+    currentuser = session["user_id"]
 
-    c1.execute("SELECT profile_pic, bio, skills, interests, softskills, endorsements FROM users WHERE user_id = %s", (user_id,))
-    user_data = c1.fetchone()
-    c1.fetchall()  # Consume any remaining results
+    c1.execute("SELECT id FROM user_auth WHERE email = %s", (session["user_id"],))
+    currentuserid = c1.fetchone()[0]
+    
+    if request.method == 'POST':
 
-    c1.execute("SELECT academic_detail_1, academic_detail_2, academic_detail_3 FROM user_academics WHERE user_id = %s", (user_id,))
-    academic_details = c1.fetchone()
-    c1.fetchall()  # Consume any remaining results
+        status = request.form.get('follow-input')
 
-    c1.execute("SELECT project_1, project_2, project_3 FROM user_projects WHERE user_id = %s", (user_id,))
-    projects = c1.fetchone()
-    c1.fetchall()  # Consume any remaining results
+        if status == 'Follow':
 
-    c1.execute("SELECT github, linkedin, instagram FROM user_links WHERE user_id = %s", (user_id,))
-    links = c1.fetchone()
-    c1.fetchall()  # Consume any remaining results
+            c1.execute("INSERT INTO user_followers (follower_id, followed_id) VALUES (%s, %s)", (currentuserid, user_id))
+            c1.execute("UPDATE users SET followers = followers + 1 WHERE user_id = %s", (user_id,))
+            c1.execute("UPDATE users SET following = following + 1 WHERE user_id = %s", (currentuserid,))
+            conn.commit()  
+        
+        elif status == 'Unfollow':
 
-    c1.execute("SELECT achievement_1, achievement_2, achievement_3 FROM user_achievements WHERE user_id = %s", (user_id,))
-    achievements = c1.fetchone()
-    c1.fetchall()  # Consume any remaining results
+            c1.execute("DELETE FROM user_followers WHERE follower_id = %s AND followed_id = %s", (currentuserid, user_id))
+            c1.execute("UPDATE users SET followers = followers - 1 WHERE user_id = %s", (user_id,))
+            c1.execute("UPDATE users SET following = following - 1 WHERE user_id = %s", (currentuserid,))
+            conn.commit()  
 
-    if user_data is None:
+        return redirect(f'/visiting/{ user_id }')
+    
+    else:
+        # splitting the email into 2 parts and capitalizing so that its displayed as a complete name in the profile template
+        username = email.split('@')[0]
+        namelist = username.split(".")
+        first = namelist[0]
+        second = namelist[1]
+        last = ""
+        for i in second:
+            if i.isalpha():
+                last += i
+
+        c1.execute("SELECT profile_pic, bio, skills, interests, softskills, followers, following FROM users WHERE user_id = %s", (user_id,))
+        user_data = c1.fetchone()
+        c1.fetchall()  # Consume any remaining results
+
+        c1.execute("SELECT academic_detail_1, academic_detail_2, academic_detail_3 FROM user_academics WHERE user_id = %s", (user_id,))
+        academic_details = c1.fetchone()
+        c1.fetchall()  # Consume any remaining results
+
+        c1.execute("SELECT project_1, project_2, project_3 FROM user_projects WHERE user_id = %s", (user_id,))
+        projects = c1.fetchone()
+        c1.fetchall()  # Consume any remaining results
+
+        c1.execute("SELECT github, linkedin, instagram FROM user_links WHERE user_id = %s", (user_id,))
+        links = c1.fetchone()
+        c1.fetchall()  # Consume any remaining results
+
+        c1.execute("SELECT achievement_1, achievement_2, achievement_3 FROM user_achievements WHERE user_id = %s", (user_id,))
+        achievements = c1.fetchone()
+        c1.fetchall()  # Consume any remaining results
+
+        c1.execute("SELECT 1 FROM user_followers WHERE follower_id = %s AND followed_id = %s", (currentuserid, user_id))
+        follower = c1.fetchone()
+
+        # Checking if the user is already following
+        if follower:
+            status = 'Unfollow' 
+        else: 
+            status = 'Follow'
+
+        if user_data is None:
+
+                user_data_dict = {
+                'profile_pic': '/static/black-white-logo.png',
+                'bio': '',
+                'skills': '',
+                'interests': '',
+                'softskills': '',
+                'followers': '0',
+                'following': '0'
+            }
+
+        else:
 
             user_data_dict = {
-            'profile_pic': '/static/black-white-logo.png',
-            'bio': '',
-            'skills': '',
-            'interests': '',
-            'softskills': '',
-            'endorsements': '0'
-        }
+                'profile_pic': user_data[0],
+                'bio': user_data[1],
+                'skills': user_data[2],
+                'interests': user_data[3],
+                'softskills': user_data[4],
+                'followers': user_data[5],
+                'following': user_data[6]
+            }
+        
+        if academic_details is None:
 
-    else:
+            academic_details_dict = {
+                'detail_1': '',
+                'detail_2': '',
+                'detail_3': ''
+            }
 
-        user_data_dict = {
-            'profile_pic': user_data[0],
-            'bio': user_data[1],
-            'skills': user_data[2],
-            'interests': user_data[3],
-            'softskills': user_data[4],
-            'endorsements': user_data[5]
-        }
-    
-    if academic_details is None:
+        else:
 
-        academic_details_dict = {
-            'detail_1': '',
-            'detail_2': '',
-            'detail_3': ''
-        }
+            academic_details_dict = {
+                'detail_1': academic_details[0],
+                'detail_2': academic_details[1],
+                'detail_3': academic_details[2]
+            }
+        
+        if projects is None:
 
-    else:
+            projects_dict = {
+                'project_1': '',
+                'project_2': '',
+                'project_3': ''
+            }
 
-        academic_details_dict = {
-            'detail_1': academic_details[0],
-            'detail_2': academic_details[1],
-            'detail_3': academic_details[2]
-        }
-    
-    if projects is None:
+        else:
 
-        projects_dict = {
-            'project_1': '',
-            'project_2': '',
-            'project_3': ''
-        }
+            projects_dict = {
+                'project_1': projects[0],
+                'project_2': projects[1],
+                'project_3': projects[2]
+            }
 
-    else:
+        if links is None:
 
-        projects_dict = {
-            'project_1': projects[0],
-            'project_2': projects[1],
-            'project_3': projects[2]
-        }
+            links_dict = {
+                'github': '',
+                'linkedin': '',
+                'instagram': ''
+            }
 
-    if links is None:
+        else:
 
-        links_dict = {
-            'github': '',
-            'linkedin': '',
-            'instagram': ''
-        }
+            links_dict = {
+                'github': links[0],
+                'linkedin': links[1],
+                'instagram': links[2]
+            }
 
-    else:
+        if achievements is None:
 
-        links_dict = {
-            'github': links[0],
-            'linkedin': links[1],
-            'instagram': links[2]
-        }
+            achievements_dict = {
+                'achievement_1': '',
+                'achievement_2': '',
+                'achievement_3': ''
+            }
 
-    if achievements is None:
+        else:
 
-        achievements_dict = {
-            'achievement_1': '',
-            'achievement_2': '',
-            'achievement_3': ''
-        }
+            achievements_dict = {
+                'achievement_1': achievements[0],
+                'achievement_2': achievements[1],
+                'achievement_3': achievements[2]
+            }
 
-    else:
+        sameuser = False
 
-        achievements_dict = {
-            'achievement_1': achievements[0],
-            'achievement_2': achievements[1],
-            'achievement_3': achievements[2]
-        }
+        if email == currentuser: # if a user is visiting their own website
+            sameuser = True
 
-    return render_template("visiting.html", first = first.capitalize(), last = last.capitalize(), user=user_data_dict, academics=academic_details_dict, projects=projects_dict, links=links_dict, achievements=achievements_dict)
+        return render_template("visiting.html", status = status, user_id = user_id, sameuser = sameuser, first = first.capitalize(), last = last.capitalize(), user=user_data_dict, academics=academic_details_dict, projects=projects_dict, links=links_dict, achievements=achievements_dict)
 
 
 @app.route('/events', methods=["GET", "POST"])
@@ -731,7 +776,7 @@ def events():
             return render_template("error.html", error="Provide a valid university email")
         link = request.form.get('website_link')
         if not link:
-            return render_template("error.html", error="Provide a website link for the event, if none enter N/A")
+            return render_template("error.html", error="Provide a website link, if none enter an instagram link or N/A")
         location = request.form.get('location')
         if not location:
             return render_template("error.html", error="Provide an event location, if the location is not decided yet enter N/A")
@@ -739,7 +784,7 @@ def events():
         if not date:
             return render_template("error.html", error="Provide the date of the event")
         mymail = os.getenv('MAIL_USERNAME')
-        msg = Message('MPSTME Connect: New Event!', recipients=[mymail])
+        msg = Message('MPSTME Connect: Event Request!', recipients=[mymail])
         msg.body = f"""
         name: {name},
         

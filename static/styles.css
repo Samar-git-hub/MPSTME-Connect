@@ -68,6 +68,9 @@ textarea::placeholder {
 .text-area-2::placeholder {
     color: var(--text-color-2)
 }
+.index-mpstme {
+    color: var(--accent-color);
+}
 header {
     background-color: var(--header-background);
     top: 0;
@@ -235,14 +238,15 @@ header {
     cursor: pointer;
 }
 .main-profile-container {
-    display: flex;
+    display: flex;    
     padding-top: 1.5rem;
+    flex-direction: row;
 }
 .profile-left {
     border-radius: 0.5rem;
     padding: 1rem;
     padding-bottom: 0.5rem;
-    max-width: 18rem;
+    max-width: 14.5rem;
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
@@ -250,7 +254,6 @@ header {
     border: 0.1rem solid var(--accent-color);
 }
 .top-part-left {
-    flex: 1;
     display: flex; 
     width: 100%;
     justify-content: center; 
@@ -336,24 +339,29 @@ header {
     word-break: break-word;
     color: var(--accent-color);
 }
-#endorsements-number {
+.endorsements-number {
     margin-top: 0rem;
     margin-bottom: 0rem;
     display: inline-block;
+    font-size: 0.9rem;
+    color: var(--accent-color);
 }
-#endorsements {
+.endorsements {
     display: inline-block;
-    margin-left: 0.5rem;
-    font-size: 1.2rem;
+    margin-left: 0.2rem;
+    font-size: 0.9rem;
     margin-top: 0rem;
     margin-bottom: 0rem;
+}
+#somespace {
+    margin-left: 0.7rem;
 }
 .profile-middle {
     border: 0.1rem solid var(--accent-color);
     border-radius: 0.5rem;
     padding: 1rem;
     padding-bottom: 0.5rem;
-    width: 150rem;
+    width: 42.5rem;
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
@@ -365,18 +373,28 @@ header {
     border-radius: 0.5rem;
     padding: 1rem;
     padding-bottom: 0.5rem;
-    width: 100%;
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
-    margin: 2rem;
-    margin-left: 0rem;
+    margin-right: 2rem;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    width: 30rem;
 }
 .top-part-right {
     width: 100%;
     flex: 1;
 }
 #profile-edit-button {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 0.5rem;
+    margin-top: 1.5rem;
+    cursor: pointer;
+    border-radius: 0.2rem;
+}
+#follow-edit-button {
     background-color: var(--primary-color);
     color: white;
     border: none;
@@ -793,10 +811,58 @@ header {
     width: 9rem;
     box-sizing: border-box;
 }
+.picture-index {
+    width: 50rem;
+}
+.double-container-index {
+    margin-top: 5rem;
+    display: flex;
+    flex-direction: row;
+}
+.top-two-profile {
+    display: flex;
+    flex-direction: row;
+}
+.middle-container {
+    display: flex;
+}
+.left-container {
+    display: flex;
+}
+@media (min-width: 1500px) {
+    .profile-right {
+        width: 100%;
+    }
+    .profile-middle {
+        width: 40rem;
+    }
+}
+@media (max-width: 1000px) {
+    .profile-middle {
+        width: 100%;
+    }
+    .profile-right {
+        width: 100%;
+    }
+}
+@media (max-width: 1400px) {
+    .main-profile-container {
+        flex-wrap: wrap;
+        display: flex;
+        flex-direction: row;
+    }
+    .profile-right {
+        width: 100%;
+        margin-left: 2rem;
+    }
+    .profile-middle {
+        width: 100%;
+    }
+}
 /* for smaller devices (tabs esque) */
 @media (max-width: 768px) {
     :root {
-        font-size: 14px; 
+        font-size: 15px; 
     }
     .header-font {
         font-size: 1.8rem; 
@@ -822,13 +888,33 @@ header {
     .profile-head {
         font-size: 1rem;
     }
+    .profile-name {
+        font-size: 1rem;
+    }
+}
+@media (max-width: 592px) {
+    .top-two-profile {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+    .left-container {
+        display: flex;
+        justify-content: center;
+    }
+    .middle-container {
+        display: flex;
+        justify-content: center;
+    }
+    .profile-middle {
+        margin-left: 2rem;
+    }
 }
 /* phone esque */
 @media (max-width: 480px) {
     :root {
-        font-size: 12px; 
+        font-size: 15px; 
     }
-
     .header-font {
         font-size: 1.6rem; 
     }
@@ -852,5 +938,5 @@ header {
     }
     .profile-head {
         font-size: 0.8rem;
-    }
+    }    
 }

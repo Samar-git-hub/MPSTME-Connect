@@ -6,14 +6,18 @@
 
 {% block body %}
 <div class="main-profile-container">
+    <div class="top-two-profile">
+    <div class="left-container">
     <div class="profile-left">
         <div class="top-part-left">
             <img class="profile-pic" src="{{ user['profile_pic'] if user['profile_pic'] else '/static/black-white-logo.png' }}" alt="Profile Picture">
         </div>
         <div class="bottom-part-left">
             <div class="profile-name">{{ first }} {{ last }}</div> <!-- split the email-->
-            <div id="endorsements-number" class="profile-head">{{ user['endorsements'] if user['endorsements'] else '0' }}</div>
-            <div id="endorsements" class="profile-subhead">endorsements</div> <!-- show number -->
+            <div class="endorsements-number profile-head">{{ user['followers'] if user['followers'] else '0' }}</div>
+            <div class="endorsements profile-subhead">Followers</div> <!-- show number -->
+            <div class="endorsements-number profile-head" id="somespace" >{{ user['following'] if user['following'] else '0' }}</div>
+            <div class="endorsements profile-subhead">Following</div>
             <div class="profile-head">Academic Details:</div>
             <div class="profile-subhead">
                 <li>{{ academics['detail_1'] if academics['detail_1'] else '' }}</li>
@@ -22,6 +26,8 @@
             </div>
         </div>
     </div>
+    </div>
+    <div class="middle-container">
     <div class="profile-middle">
         <div>
             <div class="profile-head">Bio</div>
@@ -37,7 +43,7 @@
         </div>
         <div>
             <div class="profile-head">Interests</div>
-            <div>
+            <div class="profile-subhead">
                 {{ user['interests'] if user['interests'] else '' }}
             </div>
         </div>
@@ -47,6 +53,8 @@
                 {{ user['softskills'] if user['softskills'] else '' }}
             </div>
         </div>
+    </div>
+    </div>
     </div>
     <div class="profile-right">
         <div class="top-part-right">
@@ -70,11 +78,14 @@
                 <li>{{ achievements['achievement_2'] if achievements['achievement_2'] else '' }}</li>
                 <li>{{ achievements['achievement_3'] if achievements['achievement_3'] else '' }}</li>
             </div>
-            <button type="submit" id="profile-edit-button">
-                <a href="/details">
-                    Follow
-                </a>
-            </button>
+            {% if not sameuser %}
+                <form method="POST" action="/visiting/{{ user_id }}">
+                    <input name="follow-input" type="hidden" value="{{ status }}">
+                    <button type="submit" id="follow-edit-button">
+                        {{ status }}
+                    </button>
+                </form>
+            {% endif %}
         </div>
     </div>
 </div>

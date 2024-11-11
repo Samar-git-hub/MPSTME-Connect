@@ -62,3 +62,7 @@ dashboard for me to check how many users i have
 could have a just happened and upcoming events like the ufc website
 
 definitely need the ai search feature before making this public
+
+semantics 
+
+rag for search
