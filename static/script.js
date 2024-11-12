@@ -9,6 +9,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const event1 = document.getElementById("event-1");
     const event2 = document.getElementById("event-2");
     const event3 = document.getElementById("event-3");
+    const verifylogo = document.getElementById("verify-logo");
     const defaultTheme = localStorage.getItem('theme') || 'dark'; // browsers have this, if not present, set default as dark
 
     document.documentElement.setAttribute('data-theme', defaultTheme);
@@ -25,6 +26,7 @@ document.addEventListener("DOMContentLoaded", function () {
         event1 && (event1.src = '/static/mumbaimunlogo-light.png');
         event2 && (event2.src = '/static/socialconclavelogo-light.png');
         event3 && (event3.src = '/static/taqneeqlogo-light.png');
+        verifylogo && (verifylogo.src = '/static/logo-light.svg');
     } else {
         buttonelement.src = '/static/moontheme.png';
         logoimageelement && (logoimageelement.src = '/static/logo-dark.svg');
@@ -35,6 +37,7 @@ document.addEventListener("DOMContentLoaded", function () {
         event1 && (event1.src = '/static/mumbaimunlogo.jpg');
         event2 && (event2.src = '/static/socialconclavelogo.png');
         event3 && (event3.src = '/static/taqneeqlogo.jpg');
+        verifylogo && (verifylogo.src = '/static/logo-dark.svg');
     }
     // upper part is basically like a get request, this is what the user sees whenever he comes to the page, even if its a reload
     // below part is the actual logic for changing the colors
@@ -53,6 +56,7 @@ document.addEventListener("DOMContentLoaded", function () {
             event1 && (event1.src = '/static/mumbaimunlogo-light.png');
             event2 && (event2.src = '/static/socialconclavelogo-light.png');
             event3 && (event3.src = '/static/taqneeqlogo-light.png');
+            verifylogo && (verifylogo.src = '/static/logo-light.svg');
         } else {
             document.documentElement.setAttribute('data-theme', 'dark');
             localStorage.setItem('theme', 'dark');
@@ -65,6 +69,7 @@ document.addEventListener("DOMContentLoaded", function () {
             event1 && (event1.src = '/static/mumbaimunlogo.jpg');
             event2 && (event2.src = '/static/socialconclavelogo.png');
             event3 && (event3.src = '/static/taqneeqlogo.jpg');
+            verifylogo && (verifylogo.src = '/static/logo-dark.svg');
         }
     });
 });
