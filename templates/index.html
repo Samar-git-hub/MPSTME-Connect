@@ -20,7 +20,7 @@
                     <div class="title-index">
                         Dynamically change your
                         {% if session["user_id"] %}
-                            <span class="index-mpstme"><a href="/profile">profile</a></span>
+                            <a href="/profile"><span class="index-mpstme">profile</span></a>
                         {% else %}
                             <span class="index-mpstme">profile</span>
                         {% endif %}
@@ -36,7 +36,7 @@
                     <div class="title-index-2">
                         Find people you want to talk with, with the help of this
                         {% if session["user_id"] %}
-                            <span class="index-mpstme"><a href="/search">search</a></span>
+                            <a href="/search"><span class="index-mpstme">search</span></a>
                         {% else %}
                             <span class="index-mpstme">search</span>
                         {% endif %}
@@ -52,7 +52,7 @@
                     <div class="title-index" >
                         Create you very own
                         {% if session["user_id"] %}
-                            <span class="index-mpstme"><a href="/events">events</a></span>!
+                            <a href="/events"><span class="index-mpstme">events</span></a>!
                         {% else %}
                             <span class="index-mpstme">events</span>!
                         {% endif %}

@@ -27,7 +27,7 @@ document.addEventListener("DOMContentLoaded", function () {
         event3 && (event3.src = '/static/taqneeqlogo-light.png');
     } else {
         buttonelement.src = '/static/moontheme.png';
-        logoimageelement && (logoimageelement.src = '/static/logo-light.svg');
+        logoimageelement && (logoimageelement.src = '/static/logo-dark.svg');
         profileindex && (profileindex.src = '/static/profilepage-index.png');
         searchindex && (searchindex.src = '/static/searchpage-index.png');
         events1index && (events1index.src = '/static/eventspage-index-1.png');
@@ -57,7 +57,7 @@ document.addEventListener("DOMContentLoaded", function () {
             document.documentElement.setAttribute('data-theme', 'dark');
             localStorage.setItem('theme', 'dark');
             buttonelement.src = '/static/moontheme.png';
-            logoimageelement && (logoimageelement.src = '/static/logo-light.svg');
+            logoimageelement && (logoimageelement.src = '/static/logo-dark.svg');
             profileindex && (profileindex.src = '/static/profilepage-index.png');
             searchindex && (searchindex.src = '/static/searchpage-index.png');
             events1index && (events1index.src = '/static/eventspage-index-1.png');
