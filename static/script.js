@@ -1,41 +1,74 @@
 // when all dom is loaded, this will execute, this is basically for toggling between dark and light mode
 document.addEventListener("DOMContentLoaded", function () {
-    const buttonelement = document.getElementById("toggle-button")
-    const logoimageelement = document.getElementById("logo")
+    const buttonelement = document.getElementById("toggle-button");
+    const logoimageelement = document.getElementById("logo");
+    const profileindex = document.getElementById("profile-page-index");
+    const searchindex = document.getElementById("search-page-index");
+    const events1index = document.getElementById("events-1-page-index");
+    const events2index = document.getElementById("events-2-page-index");
+    const event1 = document.getElementById("event-1");
+    const event2 = document.getElementById("event-2");
+    const event3 = document.getElementById("event-3");
     const defaultTheme = localStorage.getItem('theme') || 'dark'; // browsers have this, if not present, set default as dark
 
     document.documentElement.setAttribute('data-theme', defaultTheme);
-    // since I havent defined any css related to data-theme for dark, it will use the dault ^
+    // since I havent defined any css related to data-theme for dark, it will use the default ^
     // document.documentElement is a way to access the <html> tag (root element)
 
     if (defaultTheme === 'light') {
         buttonelement.src = '/static/suntheme.png';
-        logoimageelement.src ='/static/logo-dark.svg'
+        logoimageelement && (logoimageelement.src = '/static/logo-light.svg');
+        profileindex && (profileindex.src = '/static/profilepage-index-light.png');
+        searchindex && (searchindex.src = '/static/searchpage-index-light.png');
+        events1index && (events1index.src = '/static/eventspage-index-1-light.png');
+        events2index && (events2index.src = '/static/eventspage-index-2-light.png');
+        event1 && (event1.src = '/static/mumbaimunlogo-light.png');
+        event2 && (event2.src = '/static/socialconclavelogo-light.png');
+        event3 && (event3.src = '/static/taqneeqlogo-light.png');
     } else {
         buttonelement.src = '/static/moontheme.png';
-        logoimageelement.src ='/static/logo-light.svg'
+        logoimageelement && (logoimageelement.src = '/static/logo-light.svg');
+        profileindex && (profileindex.src = '/static/profilepage-index.png');
+        searchindex && (searchindex.src = '/static/searchpage-index.png');
+        events1index && (events1index.src = '/static/eventspage-index-1.png');
+        events2index && (events2index.src = '/static/eventspage-index-2.png');
+        event1 && (event1.src = '/static/mumbaimunlogo.jpg');
+        event2 && (event2.src = '/static/socialconclavelogo.png');
+        event3 && (event3.src = '/static/taqneeqlogo.jpg');
     }
     // upper part is basically like a get request, this is what the user sees whenever he comes to the page, even if its a reload
     // below part is the actual logic for changing the colors
     buttonelement.addEventListener('click', function () {
         const currentTheme = document.documentElement.getAttribute('data-theme'); // for this logic, we first get the current theme 
         // which is in the html element (document.documentElement)
-        if (currentTheme === 'dark')
-        {
+        if (currentTheme === 'dark') {
             document.documentElement.setAttribute('data-theme', 'light');
             localStorage.setItem('theme', 'light');
             buttonelement.src = '/static/suntheme.png';
-            logoimageelement.src ='/static/logo-dark.svg';        
-        }
-        else
-        {
+            logoimageelement && (logoimageelement.src = '/static/logo-light.svg');
+            profileindex && (profileindex.src = '/static/profilepage-index-light.png');
+            searchindex && (searchindex.src = '/static/searchpage-index-light.png');
+            events1index && (events1index.src = '/static/eventspage-index-1-light.png');
+            events2index && (events2index.src = '/static/eventspage-index-2-light.png');
+            event1 && (event1.src = '/static/mumbaimunlogo-light.png');
+            event2 && (event2.src = '/static/socialconclavelogo-light.png');
+            event3 && (event3.src = '/static/taqneeqlogo-light.png');
+        } else {
             document.documentElement.setAttribute('data-theme', 'dark');
             localStorage.setItem('theme', 'dark');
             buttonelement.src = '/static/moontheme.png';
-            logoimageelement.src ='/static/logo-light.svg';
+            logoimageelement && (logoimageelement.src = '/static/logo-light.svg');
+            profileindex && (profileindex.src = '/static/profilepage-index.png');
+            searchindex && (searchindex.src = '/static/searchpage-index.png');
+            events1index && (events1index.src = '/static/eventspage-index-1.png');
+            events2index && (events2index.src = '/static/eventspage-index-2.png');
+            event1 && (event1.src = '/static/mumbaimunlogo.jpg');
+            event2 && (event2.src = '/static/socialconclavelogo.png');
+            event3 && (event3.src = '/static/taqneeqlogo.jpg');
         }
-    })
-})
+    });
+});
+
 /*
 The element pen-icon (the image) acts like a button as when clicked, with the help of javascript.
 When clicked, the button then calls for the input element (with the file type and file name),

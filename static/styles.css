@@ -10,13 +10,13 @@
     --text-color-2: rgb(182, 182, 182);
 }
 [data-theme="light"] { /* can be toggled with light theme, thats why variables in the CSS */
-    --background-color: rgb(218, 241, 249);
+    --background-color: rgb(255, 255, 255);
     --text-color: #2F242C;
     --text-color-2: rgb(85, 85, 85);
     --primary-color: #A42CD6;
     --secondary-color: #f1b1b0;
-    --accent-color: #502274;
-    --header-background: lightblue;
+    --accent-color: #C179B9;
+    --header-background: rgb(240, 240, 240);
     --primary-rgba: rgba(164, 44, 214, 1); /* hazy buttons, same color as primary */
     --primary-rgba-opaque: rgba(164, 44, 214, 0.8);
 }
@@ -24,7 +24,7 @@
     font-family: Poppins, sans-serif;
 }
 a {
-    color: inherit;
+    color: var(--text-color);
     text-decoration: none;
 }
 a:hover{
@@ -514,7 +514,6 @@ header {
 .middle-part-search {
     display: flex;
     flex-direction: column;
-    margin-bottom: 1rem;
 }
 .search-header {
     font-size: 2rem;
@@ -560,7 +559,7 @@ header {
     display: flex;
     align-items: center;
     margin-top: 2rem;
-    margin-bottom: 5rem;
+    margin-bottom: 3.5rem;
     position: relative;
 }
 .profile-preview {
@@ -568,6 +567,7 @@ header {
     display: flex;
     border: 0.1rem solid var(--accent-color);
     border-radius: 6rem;
+    margin-bottom: 1rem;
 }
 .left-profile-preview {
     width: 12rem;
@@ -812,12 +812,12 @@ header {
     box-sizing: border-box;
 }
 .picture-index {
-    width: 50rem;
+    width: 100%;
 }
 .double-container-index {
-    margin-top: 5rem;
+    margin-top: 3rem;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
 }
 .top-two-profile {
     display: flex;
@@ -828,6 +828,29 @@ header {
 }
 .left-container {
     display: flex;
+}
+.description-index {
+    margin-top: 1.2rem;
+}
+.title-index {
+    font-size: 1.4rem;
+    font-weight: 500; 
+    margin-top: 1.5rem;
+}
+.title-index-2 {
+    font-size: 1.4rem;
+    font-weight: 500; 
+}
+.main-index {
+    margin-top: 8rem;
+    padding-left: 12%;
+    padding-right: 12%;
+}
+.search-index-container {
+    margin-top: 2rem;
+}
+.profile-button {
+    color: white;
 }
 @media (min-width: 1500px) {
     .profile-right {

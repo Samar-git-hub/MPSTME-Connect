@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block body %}
-    <div class="main-events">
+    <div class="main-index">
         <div class="top-part-index">
             <div class="search-header">
                 Welcome to <span class="index-mpstme">MPSTME</span>'s own platform to connect students!
@@ -16,14 +16,53 @@
         </div>
         <div class="middle-part-index">
             <div class="double-container-index">
-                <div class="description-index">
-                    Here you can request approval to create events for yourself or for an organization.
-                    After approval, you will receive a mail that your event has been approved, and it will
-                    be displayed on the events page of MPSTME Connect.
-                    Be careful though, you can only request to create an event once in every 5 minutes!
+                <div>
+                    <div class="title-index">
+                        Dynamically change your
+                        {% if session["user_id"] %}
+                            <span class="index-mpstme"><a href="/profile">profile</a></span>
+                        {% else %}
+                            <span class="index-mpstme">profile</span>
+                        {% endif %}
+                        page!
+                    </div>
                 </div>
                 <div class="picture-index-container">
-                    <img class="picture-index" src="/static/profilepage-index.png">
+                    <img class="picture-index" id="profile-page-index" src="/static/profilepage-index.png">
+                </div>
+            </div>
+            <div class="double-container-index">
+                <div>
+                    <div class="title-index-2">
+                        Find people you want to talk with, with the help of this
+                        {% if session["user_id"] %}
+                            <span class="index-mpstme"><a href="/search">search</a></span>
+                        {% else %}
+                            <span class="index-mpstme">search</span>
+                        {% endif %}
+                        page!
+                    </div>
+                </div>
+                <div class="picture-index-container search-index-container">
+                    <img class="picture-index" id="search-page-index" src="/static/searchpage-index.png">
+                </div>
+            </div>
+            <div class="double-container-index">
+                <div>
+                    <div class="title-index" >
+                        Create you very own
+                        {% if session["user_id"] %}
+                            <span class="index-mpstme"><a href="/events">events</a></span>!
+                        {% else %}
+                            <span class="index-mpstme">events</span>!
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="picture-index-container search-index-container">
+                    <img class="picture-index" id="events-1-page-index" src="/static/eventspage-index-1.png">
+                </div>
+                <div class="picture-index-container">
+                    <img class="picture-index" id="events-2-page-index" src="/static/eventspage-index-2.png">
                 </div>
             </div>
         </div>
