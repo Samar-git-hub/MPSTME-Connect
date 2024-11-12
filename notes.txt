@@ -66,3 +66,5 @@ definitely need the ai search feature before making this public
 semantics 
 
 rag for search
+
+light and dark mode for signup page
