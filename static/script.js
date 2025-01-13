@@ -1,6 +1,7 @@
 // when all dom is loaded, this will execute, this is basically for toggling between dark and light mode
 document.addEventListener("DOMContentLoaded", function () {
     const buttonelement = document.getElementById("toggle-button");
+    const hamburgermenu = document.getElementById("hamburger-icon");
     const logoimageelement = document.getElementById("logo");
     const profileindex = document.getElementById("profile-page-index");
     const searchindex = document.getElementById("search-page-index");
@@ -18,6 +19,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (defaultTheme === 'light') {
         buttonelement.src = '/static/suntheme.png';
+        hamburgermenu && (hamburgermenu.src = '/static/hamburger-light.png');
         logoimageelement && (logoimageelement.src = '/static/logo-light.svg');
         profileindex && (profileindex.src = '/static/profilepage-index-light.png');
         searchindex && (searchindex.src = '/static/searchpage-index-light.png');
@@ -29,6 +31,7 @@ document.addEventListener("DOMContentLoaded", function () {
         verifylogo && (verifylogo.src = '/static/logo-light.svg');
     } else {
         buttonelement.src = '/static/moontheme.png';
+        hamburgermenu && (hamburgermenu.src = '/static/hamburger-dark.png');
         logoimageelement && (logoimageelement.src = '/static/logo-dark.svg');
         profileindex && (profileindex.src = '/static/profilepage-index.png');
         searchindex && (searchindex.src = '/static/searchpage-index.png');
@@ -48,6 +51,7 @@ document.addEventListener("DOMContentLoaded", function () {
             document.documentElement.setAttribute('data-theme', 'light');
             localStorage.setItem('theme', 'light');
             buttonelement.src = '/static/suntheme.png';
+            hamburgermenu && (hamburgermenu.src = '/static/hamburger-light.png');
             logoimageelement && (logoimageelement.src = '/static/logo-light.svg');
             profileindex && (profileindex.src = '/static/profilepage-index-light.png');
             searchindex && (searchindex.src = '/static/searchpage-index-light.png');
@@ -61,6 +65,7 @@ document.addEventListener("DOMContentLoaded", function () {
             document.documentElement.setAttribute('data-theme', 'dark');
             localStorage.setItem('theme', 'dark');
             buttonelement.src = '/static/moontheme.png';
+            hamburgermenu && (hamburgermenu.src = '/static/hamburger-dark.png');
             logoimageelement && (logoimageelement.src = '/static/logo-dark.svg');
             profileindex && (profileindex.src = '/static/profilepage-index.png');
             searchindex && (searchindex.src = '/static/searchpage-index.png');

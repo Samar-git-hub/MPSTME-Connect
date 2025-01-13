@@ -852,6 +852,24 @@ header {
 .profile-button {
     color: white;
 }
+#hamburger-icon {
+    display: none;
+    height: 2rem;
+    margin-top: 1.8rem;
+    margin-right: 1.2rem;
+    margin-left: -1.2rem;
+    width: auto;
+    cursor: pointer;
+}
+@media (max-width: 768px) {
+    .right-part {
+        display: none; 
+    }
+
+    #hamburger-icon {
+        display: block;
+    }
+}
 @media (min-width: 1500px) {
     .profile-right {
         width: 100%;
