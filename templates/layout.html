@@ -46,6 +46,35 @@
                 {% endif %}
             </div>
             <img src="/static/hamburger-dark.png" id="hamburger-icon">
+            <div class="mobile-menu">
+                <div class="close-button-main">
+                    <img src="/static/crossbutton-dark.png" id="close-button">
+                </div>
+                {% if session["user_id"] %}
+                    <a href="/search">Search</a>
+                    <a href="/events">Events</a>
+                    <a href="/profile">Profile</a>
+                    <a href="/logout">Log out</a>
+                {% else %}
+                    {% if session["verification_code"] %}
+                        {% if session["valid"] %}
+                            <a href="/signup">Create your account</a>
+                            <a href="/register">Register</a>
+                            <a href="/login">Log in</a>
+                        {% else %}
+                            <a href="/verify">Retry verification</a>
+                            <a href="/register">Register</a>
+                            <a href="/login">Log in</a>
+                        {% endif %}
+                    {% else %}
+                        <a href="/register">Register</a>
+                        <a href="/login">Log in</a>
+                    {% endif %}
+                {% endif %}
+                <div class="theme-toggle">
+                    <img id="mobile-toggle-button" src="/static/moontheme.png">
+                </div>
+            </div>
         </header>
         {% block body %}{% endblock %}
     </body>

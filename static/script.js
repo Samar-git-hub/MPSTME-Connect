@@ -2,6 +2,8 @@
 document.addEventListener("DOMContentLoaded", function () {
     const buttonelement = document.getElementById("toggle-button");
     const hamburgermenu = document.getElementById("hamburger-icon");
+    const mobiletoggle = document.getElementById("mobile-toggle-button");
+    const closebutton = document.getElementById("close-button");
     const logoimageelement = document.getElementById("logo");
     const profileindex = document.getElementById("profile-page-index");
     const searchindex = document.getElementById("search-page-index");
@@ -20,6 +22,8 @@ document.addEventListener("DOMContentLoaded", function () {
     if (defaultTheme === 'light') {
         buttonelement.src = '/static/suntheme.png';
         hamburgermenu && (hamburgermenu.src = '/static/hamburger-light.png');
+        mobiletoggle && (mobiletoggle.src='/static/suntheme.png');
+        closebutton && (closebutton.src = '/static/crossbutton-light.png');
         logoimageelement && (logoimageelement.src = '/static/logo-light.svg');
         profileindex && (profileindex.src = '/static/profilepage-index-light.png');
         searchindex && (searchindex.src = '/static/searchpage-index-light.png');
@@ -32,6 +36,8 @@ document.addEventListener("DOMContentLoaded", function () {
     } else {
         buttonelement.src = '/static/moontheme.png';
         hamburgermenu && (hamburgermenu.src = '/static/hamburger-dark.png');
+        mobiletoggle && (mobiletoggle.src='/static/moontheme.png');
+        closebutton && (closebutton.src = '/static/crossbutton-dark.png');
         logoimageelement && (logoimageelement.src = '/static/logo-dark.svg');
         profileindex && (profileindex.src = '/static/profilepage-index.png');
         searchindex && (searchindex.src = '/static/searchpage-index.png');
@@ -44,7 +50,8 @@ document.addEventListener("DOMContentLoaded", function () {
     }
     // upper part is basically like a get request, this is what the user sees whenever he comes to the page, even if its a reload
     // below part is the actual logic for changing the colors
-    buttonelement.addEventListener('click', function () {
+
+    function handleThemeToggle() {
         const currentTheme = document.documentElement.getAttribute('data-theme'); // for this logic, we first get the current theme 
         // which is in the html element (document.documentElement)
         if (currentTheme === 'dark') {
@@ -52,6 +59,8 @@ document.addEventListener("DOMContentLoaded", function () {
             localStorage.setItem('theme', 'light');
             buttonelement.src = '/static/suntheme.png';
             hamburgermenu && (hamburgermenu.src = '/static/hamburger-light.png');
+            mobiletoggle && (mobiletoggle.src='/static/suntheme.png');
+            closebutton && (closebutton.src = '/static/crossbutton-light.png');
             logoimageelement && (logoimageelement.src = '/static/logo-light.svg');
             profileindex && (profileindex.src = '/static/profilepage-index-light.png');
             searchindex && (searchindex.src = '/static/searchpage-index-light.png');
@@ -66,6 +75,8 @@ document.addEventListener("DOMContentLoaded", function () {
             localStorage.setItem('theme', 'dark');
             buttonelement.src = '/static/moontheme.png';
             hamburgermenu && (hamburgermenu.src = '/static/hamburger-dark.png');
+            mobiletoggle && (mobiletoggle.src='/static/moontheme.png');
+            closebutton && (closebutton.src = '/static/crossbutton-dark.png');
             logoimageelement && (logoimageelement.src = '/static/logo-dark.svg');
             profileindex && (profileindex.src = '/static/profilepage-index.png');
             searchindex && (searchindex.src = '/static/searchpage-index.png');
@@ -76,7 +87,15 @@ document.addEventListener("DOMContentLoaded", function () {
             event3 && (event3.src = '/static/taqneeqlogo.jpg');
             verifylogo && (verifylogo.src = '/static/logo-dark.svg');
         }
-    });
+    }
+
+    if (buttonelement) {
+        buttonelement.addEventListener('click', handleThemeToggle);
+    }
+    
+    if (mobiletoggle) {
+        mobiletoggle.addEventListener('click', handleThemeToggle);
+    }
 });
 
 /*
@@ -163,4 +182,33 @@ document.addEventListener("DOMContentLoaded", ()=> {
     searchInput.addEventListener("input", () => { // do the same normally if the input is changed
         searchProfiles();
     });    
+});
+
+// hamburger menu functionality
+
+document.addEventListener('DOMContentLoaded', function() {
+    const hamburgerIcon = document.getElementById('hamburger-icon');
+    const closeButton = document.getElementById('close-button');
+    const mobileMenu = document.querySelector('.mobile-menu');
+    
+    // Toggle mobile menu with hamburger icon
+    hamburgerIcon.addEventListener('click', function() {
+        if (mobileMenu.classList.contains('active')) {
+            mobileMenu.classList.remove('active');
+        } else {
+            mobileMenu.classList.add('active');
+        }
+    });
+    
+    // Close menu with close button
+    closeButton.addEventListener('click', function() {
+        mobileMenu.classList.remove('active');
+    });
+    
+    // Close menu when clicking outside
+    document.addEventListener('click', function(event) {
+        if (!mobileMenu.contains(event.target) && !hamburgerIcon.contains(event.target)) {
+            mobileMenu.classList.remove('active');
+        }
+    });
 });
