@@ -62,7 +62,7 @@ def login():
         c1.execute("SELECT * FROM user_auth WHERE email = (%s)", (email, ))
         emails = c1.fetchall()
         if len(emails) != 1:
-            return render_template("error.html", error="This email has not been registered! WOOOOOOOOOOOOOOOOOOw wowow")
+            return render_template("error.html", error="This email has not been registered!")
         
         c1.execute("SELECT password FROM user_auth WHERE email = (%s)", (email, ))
         dbpassword = c1.fetchone()[0] # first element of the returned tuple 

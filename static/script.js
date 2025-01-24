@@ -190,25 +190,30 @@ document.addEventListener('DOMContentLoaded', function() {
     const hamburgerIcon = document.getElementById('hamburger-icon');
     const closeButton = document.getElementById('close-button');
     const mobileMenu = document.querySelector('.mobile-menu');
+    const body = document.querySelector('body');
     
     // Toggle mobile menu with hamburger icon
     hamburgerIcon.addEventListener('click', function() {
         if (mobileMenu.classList.contains('active')) {
             mobileMenu.classList.remove('active');
+            body.classList.remove('active')
         } else {
             mobileMenu.classList.add('active');
+            body.classList.add('active')
         }
     });
     
     // Close menu with close button
     closeButton.addEventListener('click', function() {
         mobileMenu.classList.remove('active');
+        body.classList.remove('active')
     });
     
     // Close menu when clicking outside
     document.addEventListener('click', function(event) {
         if (!mobileMenu.contains(event.target) && !hamburgerIcon.contains(event.target)) {
             mobileMenu.classList.remove('active');
+            body.classList.remove('active')
         }
     });
 });

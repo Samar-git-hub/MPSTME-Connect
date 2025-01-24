@@ -914,6 +914,9 @@ header {
     #hamburger-icon.active {
         display: none;
     }
+    body.active{
+        padding-top: 6rem;
+    }
 }
 @media (min-width: 1500px) {
     .profile-right {
