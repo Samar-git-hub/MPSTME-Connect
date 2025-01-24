@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 
 {% block title %}
-    Log In
+    Events
 {% endblock %}
 
 {% block body %}
@@ -96,25 +96,31 @@
                     Be careful though, you can only request to create an event once in every 5 minutes!
                 </div>
             </div>
-            <form class="events-request-container" action="/events" method="POST">
-                <div class="events-request-info">
-                    <input class="events-input-box" type="text" name="name" placeholder="Name">
-                    <input class="events-input-box" type="email" name="university_email" placeholder="University Email">
-                </div>
-                <div class="events-request-message">
-                    <textarea class="events-textarea" name="description" placeholder="Enter a message, giving a description of the event"></textarea>
-                </div>
-                <div class="events-request-info">
-                    <input class="events-input-box" type="text" name="organizer_name" placeholder="Enter the organizer's name">
-                    <input class="events-input-box" type="text" name="website_link" placeholder="Website link or an instagram link">
-                </div>
-                <div class="events-request-date">
-                    <label for="event_date">Date of the event:</label>
-                    <input class="events-date-selector" type="date" name="event_date">
-                    <input class="location-events-input-box" type="text" name="location" placeholder="Location of the event">
-                </div>
-                <button type="submit" id="events-submit-button">Request approval</button>
-            </form>
+            <div class="all-forms">
+                <form class="events-request-container" action="/events" method="POST">
+                    <div class="events-request-info">
+                        <input class="events-input-box" type="text" name="name" placeholder="Name">
+                        <input class="events-input-box" type="email" name="university_email" placeholder="University Email">
+                    </div>
+                    <div class="events-request-message">
+                        <textarea class="events-textarea" name="description" placeholder="Enter a message, giving a description of the event"></textarea>
+                    </div>
+                    <div class="events-request-info">
+                        <input class="events-input-box" type="text" name="organizer_name" placeholder="Enter the organizer's name">
+                        <input class="events-input-box" type="text" name="website_link" placeholder="Website link or an instagram link">
+                    </div>
+                    <div class="events-request-date">
+                        <div class="dates-container">
+                            <label for="event_date">Date of the event:</label>
+                            <input class="events-date-selector" type="date" name="event_date">
+                        </div>
+                        <input class="location-events-input-box" type="text" name="location" placeholder="Location of the event">
+                    </div>
+                    <div class="request-div">
+                        <button type="submit" id="events-submit-button">Request approval</button>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 {% endblock %}

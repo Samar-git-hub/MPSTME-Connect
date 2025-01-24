@@ -585,6 +585,7 @@ header {
     flex: 1;
     height: 12rem;
     padding: 1rem;
+    padding-right: 2.5rem;
     box-sizing: border-box; 
 }
 .profile-preview-pic-container {
@@ -612,7 +613,7 @@ header {
     color: var(--accent-color);
 }
 .search-description {
-    font-size: 1rem;
+    font-size: 0.8rem;
 }
 .filter-icon {
     height: 1.2rem;
@@ -740,6 +741,9 @@ header {
     font-size: 0.9rem;
     font-weight: 350; 
 }
+.events-date-selector{
+    margin-left: 1rem;
+}
 #events-submit-button {
     background-color: var(--primary-color);
     color: white;
@@ -753,7 +757,7 @@ header {
 }
 .events-input-box {
     box-sizing: border-box;
-    width: 50%;
+    width: 60%;
     background-color: transparent;
     border: 0.1rem solid var(--accent-color);
     padding: 0.5rem;
@@ -777,6 +781,7 @@ header {
     display: flex;
     flex-direction: row;
     gap: 1rem;
+    align-items: center;
 }
 .events-textarea {
     width: 100%;
@@ -788,7 +793,8 @@ header {
 }
 .events-title-stuff {
     display: flex;
-    width: 35rem;
+    max-width: 35rem;
+    width: auto;
     flex-direction: column;
     justify-content: start;
 }
@@ -817,8 +823,24 @@ header {
     width: 9rem;
     box-sizing: border-box;
 }
+.events-request-message {
+    display: flex;
+    justify-content: center;
+}
+.dates-container{
+    display: flex;
+    align-items: center;
+}
+.all-forms{
+    display: flex;
+    align-items: center;
+}
 .picture-index {
     width: 100%;
+}
+.request-div{
+    display: flex;
+    justify-content: start;
 }
 .double-container-index {
     margin-top: 3rem;
@@ -899,11 +921,27 @@ header {
     width: auto;
     cursor: pointer;
 }
+@media (max-width: 1200px){
+    .all-events-container{
+        flex-direction: column;
+        align-items: center;
+    }
+    .events-container{
+        width: 50%;
+    }
+}
+@media (max-width: 1000px){
+    .all-events-container{
+        flex-direction: column;
+    }
+    .events-container{
+        width: 75%;
+    }
+}
 @media (max-width: 768px) {
     .right-part {
         display: none; 
     }
-
     #hamburger-icon {
         display: block;
     }
@@ -915,7 +953,10 @@ header {
         display: none;
     }
     body.active{
-        padding-top: 6rem;
+        padding-top: 10rem;
+    }
+    .events-container{
+        width: 100%;
     }
 }
 @media (min-width: 1500px) {
@@ -926,12 +967,104 @@ header {
         width: 40rem;
     }
 }
-@media (max-width: 1000px) {
+@media (max-width: 1050px) {
     .profile-middle {
         width: 100%;
     }
     .profile-right {
         width: 100%;
+    }
+    .search-description{
+        font-size: 0.7rem;
+    }
+    .search-name{
+        font-size: 1.3rem;
+    }
+    .search-head{
+        font-size: 1rem;
+    }
+}
+@media (max-width: 900px){
+    .search-description{
+        font-size: 0.57rem;
+    }
+    .search-name{
+        font-size: 1.1rem;
+    }
+    .search-head{
+        font-size: 0.8rem;
+    }
+}
+@media (max-width: 820px){
+    .left-profile-preview{
+        width: 10rem;
+        height: 10rem;
+    }
+    .right-profile-preview{
+        height: 10rem;
+    }
+    .profile-preview-pic{
+        height: 8rem;
+        width: 8rem;
+    }
+}
+@media (max-width: 720px){
+    .left-profile-preview{
+        width: 8.5rem;
+        height: 8.5rem;
+    }
+    .right-profile-preview{
+        height: 8.5rem;
+    }
+    .profile-preview-pic{
+        height: 6.25rem;
+        width: 6.25rem;
+    }
+    .search-description{
+        font-size: 0.47rem;
+    }
+    .search-name{
+        font-size: 0.8rem;
+    }
+    .search-head{
+        font-size: 0.5rem;
+    }
+    .search-header{
+        font-size: 1.8rem;
+    }
+    .search-subheader{
+        font-size: 1.3rem;
+    }
+    .search-inputbox{
+        font-size: 0.8rem;
+    }
+}
+@media (max-width: 620px){
+    .left-profile-preview{
+        width: 7.5rem;
+        height: 7.5rem;
+    }
+    .right-profile-preview{
+        height: 7.5rem;
+    }
+    .profile-preview-pic{
+        height: 5.75rem;
+        width: 5.75rem;
+    }
+    .search-description{
+        font-size: 0.43rem;
+    }
+    .search-name{
+        font-size: 0.7rem;
+    }
+    .search-head{
+        font-size: 0.4rem;
+    }
+    .search-header{
+        font-size: 1.5rem;
+    }
+    .search-subheader{
+        font-size: 1.1rem;
     }
 }
 @media (max-width: 1400px) {
@@ -1000,6 +1133,21 @@ header {
     }
     .profile-middle {
         margin-left: 2rem;
+    }
+    .events-request-date{
+        flex-direction: column;
+    }
+    .events-request-info{
+        flex-direction: column;
+    }
+    .events-textarea{
+        width: 60%;
+    }
+    .request-div{
+        justify-content: center;
+    }
+    .location-events-input-box{
+        width: 60%;
     }
 }
 /* phone esque */
