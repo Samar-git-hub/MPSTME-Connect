@@ -757,7 +757,7 @@ header {
 }
 .events-input-box {
     box-sizing: border-box;
-    width: 60%;
+    width: 100%;
     background-color: transparent;
     border: 0.1rem solid var(--accent-color);
     padding: 0.5rem;
@@ -983,6 +983,10 @@ header {
     .search-head{
         font-size: 1rem;
     }
+    .main-search{
+        padding-left: 20%;
+        padding-right: 20%;
+    }
 }
 @media (max-width: 900px){
     .search-description{
@@ -993,6 +997,10 @@ header {
     }
     .search-head{
         font-size: 0.8rem;
+    }
+    .main-search{
+        padding-left: 18%;
+        padding-right: 18%;
     }
 }
 @media (max-width: 820px){
@@ -1006,6 +1014,10 @@ header {
     .profile-preview-pic{
         height: 8rem;
         width: 8rem;
+    }
+    .main-search{
+        padding-left: 15%;
+        padding-right: 15%;
     }
 }
 @media (max-width: 720px){
@@ -1021,7 +1033,7 @@ header {
         width: 6.25rem;
     }
     .search-description{
-        font-size: 0.47rem;
+        font-size: 0.5rem;
     }
     .search-name{
         font-size: 0.8rem;
@@ -1030,13 +1042,20 @@ header {
         font-size: 0.5rem;
     }
     .search-header{
-        font-size: 1.8rem;
+        font-size: 1.6rem;
     }
     .search-subheader{
-        font-size: 1.3rem;
+        font-size: 1.1rem;
     }
     .search-inputbox{
         font-size: 0.8rem;
+    }
+    .main-search{
+        padding-left: 10%;
+        padding-right: 10%;
+    }
+    .all-forms{
+        width: 100%;
     }
 }
 @media (max-width: 620px){
@@ -1052,7 +1071,7 @@ header {
         width: 5.75rem;
     }
     .search-description{
-        font-size: 0.43rem;
+        font-size: 0.47rem;
     }
     .search-name{
         font-size: 0.7rem;
@@ -1065,6 +1084,10 @@ header {
     }
     .search-subheader{
         font-size: 1.1rem;
+    }
+    .main-search{
+        padding-left: 8%;
+        padding-right: 8%;
     }
 }
 @media (max-width: 1400px) {
@@ -1141,13 +1164,13 @@ header {
         flex-direction: column;
     }
     .events-textarea{
-        width: 60%;
+        width: 100%;
     }
     .request-div{
         justify-content: center;
     }
     .location-events-input-box{
-        width: 60%;
+        width: 100%;
     }
 }
 /* phone esque */
@@ -1182,4 +1205,11 @@ header {
     .profile-head {
         font-size: 0.8rem;
     }    
+    .main-search{
+        padding-left: 2%;
+        padding-right: 2%;
+    }
+    .search-description{
+        font-size: 0.45rem;
+    }
 }
